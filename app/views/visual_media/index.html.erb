@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Visual media</h1>
+
+<div id="visual_media">
+  <% @visual_media.each do |visual_medium| %>
+    <%= render visual_medium %>
+    <p>
+      <%= link_to "Show this visual medium", visual_medium %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New visual medium", new_visual_medium_path %>

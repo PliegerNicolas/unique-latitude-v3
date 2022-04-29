@@ -1,0 +1,62 @@
+<%= form_with(model: visual_medium) do |form| %>
+  <% if visual_medium.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(visual_medium.errors.count, "error") %> prohibited this visual_medium from being saved:</h2>
+
+      <ul>
+        <% visual_medium.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :author, style: "display: block" %>
+    <%= form.text_field :author %>
+  </div>
+
+  <div>
+    <%= form.label :location, style: "display: block" %>
+    <%= form.text_field :location %>
+  </div>
+
+  <div>
+    <%= form.label :date, style: "display: block" %>
+    <%= form.date_field :date %>
+  </div>
+
+  <div>
+    <%= form.label :url, style: "display: block" %>
+    <%= form.text_field :url %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :media, style: "display: block" %>
+    <%= form.number_field :media %>
+  </div>
+
+  <div>
+    <%= form.label :priority_index, style: "display: block" %>
+    <%= form.number_field :priority_index %>
+  </div>
+
+  <div>
+    <%= form.label :project_id, style: "display: block" %>
+    <%= form.text_field :project_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

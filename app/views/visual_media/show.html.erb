@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @visual_medium %>
+
+<div>
+  <%= link_to "Edit this visual medium", edit_visual_medium_path(@visual_medium) %> |
+  <%= link_to "Back to visual media", visual_media_path %>
+
+  <%= button_to "Destroy this visual medium", @visual_medium, method: :delete %>
+</div>

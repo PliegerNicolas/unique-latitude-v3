@@ -9,6 +9,7 @@ one:
   description: MyText
   media: 1
   priority_index: 1
+  project: one
 
 two:
   title: MyString
@@ -19,3 +20,4 @@ two:
   description: MyText
   media: 1
   priority_index: 1
+  project: two
