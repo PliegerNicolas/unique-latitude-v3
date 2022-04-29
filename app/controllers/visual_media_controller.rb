@@ -1,0 +1,2 @@
+class VisualMediaController < ApplicationController
+end
