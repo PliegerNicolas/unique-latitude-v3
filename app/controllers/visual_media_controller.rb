@@ -1,20 +1,28 @@
 class VisualMediaController < ApplicationController
   before_action :set_visual_medium, only: %i[ show edit update destroy ]
+  before_action :get_project, only: :index
 
-  # GET /visual_media/1 or /visual_media/1.json
+  # GET /visual_media
+  def index
+    @visual_media = policy_scope(@project.visual_media)
+    authorize VisualMedium
+  end
+
+  # GET /visual_media/1
   def show
   end
   
   # GET /visual_media/new
   def new
     @visual_medium = VisualMedium.new
+    authorize @visual_medium
   end
 
   # GET /visual_media/1/edit
   def edit
   end
 
-  # POST /visual_media or /visual_media.json
+  # POST /visual_media
   def create
     @visual_medium = VisualMedium.new(visual_medium_params)
 
@@ -27,7 +35,7 @@ class VisualMediaController < ApplicationController
     end
   end
 
-  # PATCH/PUT /visual_media/1 or /visual_media/1.json
+  # PATCH/PUT /visual_media/1
   def update
     respond_to do |format|
       if @visual_medium.update(visual_medium_params)
@@ -38,7 +46,7 @@ class VisualMediaController < ApplicationController
     end
   end
 
-  # DELETE /visual_media/1 or /visual_media/1.json
+  # DELETE /visual_media/1
   def destroy
     @visual_medium.destroy
 
@@ -48,9 +56,9 @@ class VisualMediaController < ApplicationController
   end
 
   private
-    # def get_project
-    #   @project = Project.find(params[:project_id])
-    # end
+    def get_project
+      @project = Project.find(params[:project_id])
+    end
     
     def set_visual_medium
       @visual_medium = VisualMedium.find(params[:id])

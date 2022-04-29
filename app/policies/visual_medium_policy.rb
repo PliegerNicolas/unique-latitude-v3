@@ -13,6 +13,10 @@ class VisualMediumPolicy < ApplicationPolicy
     attr_reader :user, :scope
   end
 
+  def index?
+    true
+  end
+  
   def show?
     true
   end

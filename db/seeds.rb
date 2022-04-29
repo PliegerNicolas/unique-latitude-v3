@@ -59,18 +59,30 @@ visual_media = VisualMedium.create([
     title: "VM-Title-1",
     url: "http://www.rand-link-1.com",
     media: 0,
-    project: Project.first
+    project: Project.find(1)
   },
   {
     title: "VM-Title-2",
     url: "http://www.rand-link-2.com",
     media: 1,
-    project: Project.first
+    project: Project.find(2)
   },
   {
     title: "VM-Title-3",
     url: "http://www.rand-link-3.com",
     media: 1,
-    project: Project.last
+    project: Project.find(3)
+  },
+  {
+    title: "VM-Title-4",
+    url: "http://www.rand-link-4.com",
+    media: 0,
+    project: Project.find(4)
+  },
+  {
+    title: "VM-Title-5",
+    url: "http://www.rand-link-5.com",
+    media: 0,
+    project: Project.find(1)
   }
 ])

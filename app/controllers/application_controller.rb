@@ -56,7 +56,6 @@ class ApplicationController < ActionController::Base
   def redirection_reroll
     path_checker = ["new", "edit"]
     path = session["user_return_to"].split("/")
-    byebug
     path.pop() if path_checker.include? path[-1]
     session["user_return_to"] = path.join("/")
   end

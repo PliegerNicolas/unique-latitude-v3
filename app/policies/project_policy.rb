@@ -5,10 +5,10 @@ class ProjectPolicy < ApplicationPolicy
     #   scope.all
     # end
     def resolve
-      if user.admin?
+      if user&.admin? || user&.moderator?
         scope.all
       else
-        scope.where(published: true)
+        scope.where(published: true)        
       end
     end
 
