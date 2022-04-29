@@ -1,11 +1,12 @@
 class ApplicationController < ActionController::Base
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :exception
+
     before_action :authenticate_user!, except: [:index, :show]
     before_action :configure_permitted_parameters, if: :devise_controller?
 
   include Pundit
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -53,11 +54,9 @@ class ApplicationController < ActionController::Base
 
   # Reroll redirection path when unauthorized
   def redirection_reroll
-    checker = ["new", "edit"]
+    path_checker = ["new", "edit"]
     path = session["user_return_to"].split("/")
-    if checker.include? path[-1]
-      path.pop()
-    end
+    path.pop() if path_checker.include? path[-1]
     session["user_return_to"] = path.join("/")
   end
 end
