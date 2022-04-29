@@ -25,40 +25,50 @@ users = User.create([
 
 projects = Project.create([
   {
-    title: "Title-1",
+    title: "Project-Title-1",
     subject: "A subject",
     category: 0,
-    user: User.last
+    user: User.last,
+    published: "published"
   },
   {
-    title: "Title-2",
+    title: "Project-Title-2",
     subject: "A subject 2",
     category: 1,
-    user: User.last
+    user: User.last,
+    published: "published"
   },
   {
-    title: "Title-3",
+    title: "Project-Title-3",
     subject: "A subject 3",
     category: 2,
-    user: User.last
+    user: User.last,
+    published: "unpublished"
+  },
+  {
+    title: "Project-Title-4",
+    subject: "A subject 3",
+    category: 2,
+    user: User.first,
+    published: "published"
   }
 ])
 
 visual_media = VisualMedium.create([
   {
-    title: "Title-1",
+    title: "VM-Title-1",
     url: "http://www.rand-link-1.com",
     media: 0,
     project: Project.first
   },
   {
-    title: "Title-2",
+    title: "VM-Title-2",
     url: "http://www.rand-link-2.com",
     media: 1,
     project: Project.first
   },
   {
-    title: "Title-3",
+    title: "VM-Title-3",
     url: "http://www.rand-link-3.com",
     media: 1,
     project: Project.last

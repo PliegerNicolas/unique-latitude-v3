@@ -3,6 +3,7 @@ class Project < ApplicationRecord
   belongs_to :user
 
   enum category: [:documentary, :institutional, :event]
+  enum published: [:unpublished, :published]
 
   before_create :slugify
 

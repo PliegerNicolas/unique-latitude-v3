@@ -1,10 +1,9 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @visual_medium %>
-
-<div>
-  <%= link_to "Edit this visual medium", edit_visual_medium_path(@visual_medium) %> |
-  <%= link_to "Back to visual media", visual_media_path %>
-
-  <%= button_to "Destroy this visual medium", @visual_medium, method: :delete %>
-</div>
+<p><%= @visual_medium.title %></p>
+<p><%= @visual_medium.author %></p>
+<p><%= @visual_medium.location %></p>
+<p><%= @visual_medium.date %></p>
+<p><%= @visual_medium.url %></p>
+<p><%= @visual_medium.description %></p>
+<p><%= @visual_medium.media %></p>
+<p><%= @visual_medium.priority_index %></p>
+<p><%= @visual_medium.project %></p>

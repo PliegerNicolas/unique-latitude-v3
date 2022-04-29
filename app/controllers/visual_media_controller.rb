@@ -1,15 +1,10 @@
 class VisualMediaController < ApplicationController
   before_action :set_visual_medium, only: %i[ show edit update destroy ]
 
-  # GET /visual_media or /visual_media.json
-  def index
-    @visual_media = VisualMedium.all
-  end
-
   # GET /visual_media/1 or /visual_media/1.json
   def show
   end
-
+  
   # GET /visual_media/new
   def new
     @visual_medium = VisualMedium.new
@@ -26,10 +21,8 @@ class VisualMediaController < ApplicationController
     respond_to do |format|
       if @visual_medium.save
         format.html { redirect_to visual_medium_url(@visual_medium), notice: "Visual medium was successfully created." }
-        format.json { render :show, status: :created, location: @visual_medium }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @visual_medium.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -39,10 +32,8 @@ class VisualMediaController < ApplicationController
     respond_to do |format|
       if @visual_medium.update(visual_medium_params)
         format.html { redirect_to visual_medium_url(@visual_medium), notice: "Visual medium was successfully updated." }
-        format.json { render :show, status: :ok, location: @visual_medium }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @visual_medium.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -53,14 +44,17 @@ class VisualMediaController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to visual_media_url, notice: "Visual medium was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    # def get_project
+    #   @project = Project.find(params[:project_id])
+    # end
+    
     def set_visual_medium
       @visual_medium = VisualMedium.find(params[:id])
+      authorize @visual_medium
     end
 
     # Only allow a list of trusted parameters through.
