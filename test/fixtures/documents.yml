@@ -2,22 +2,18 @@
 
 one:
   title: MyString
+  description: MyText
   author: MyString
   location: MyString
-  date: 2022-04-29
-  url: MyString
-  description: MyText
-  media: 1
+  date: 2022-04-30
   priority_index: 1
   project: one
 
 two:
   title: MyString
+  description: MyText
   author: MyString
   location: MyString
-  date: 2022-04-29
-  url: MyString
-  description: MyText
-  media: 1
+  date: 2022-04-30
   priority_index: 1
   project: two

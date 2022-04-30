@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
-  has_many :visual_media
+  has_many :portfolios
   belongs_to :user
 
   enum category: [:documentary, :institutional, :event]

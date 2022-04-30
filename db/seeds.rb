@@ -6,24 +6,31 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-users = User.create([
+users = User.create([ # 3 Users
     {
-      username: "user",
+      username: "admin",
       email: "email1@example.com",
       password: "password",
       password_confirmation: "password",
-      role: 0
+      role: 2
     },
     {
-      username: "admin",
+      username: "moderator",
       email: "email2@example.com",
       password: "password",
       password_confirmation: "password",
-      role: 2
+      role: 1
+    },
+    {
+      username: "user",
+      email: "email3@example.com",
+      password: "password",
+      password_confirmation: "password",
+      role: 0
     }
   ])
 
-projects = Project.create([
+projects = Project.create([ # 4 Projects
   {
     title: "Project-Title-1",
     subject: "A subject",
@@ -54,35 +61,53 @@ projects = Project.create([
   }
 ])
 
-visual_media = VisualMedium.create([
+media = Medium.create([ # 6 Documents
   {
-    title: "VM-Title-1",
-    url: "http://www.rand-link-1.com",
-    media: 0,
+    title: "Medium-Title-1",
+    author: "Author-1",
+    description: "Description.",
+    location: "Somewhere",
+    date: rand(1.year.ago..50.weeks.from_now).to_date,
     project: Project.find(1)
   },
   {
-    title: "VM-Title-2",
-    url: "http://www.rand-link-2.com",
-    media: 1,
+    title: "Medium-Title-2",
+    author: "Author-2",
+    description: "Description.",
+    location: "Somewhere",
+    date: rand(1.year.ago..50.weeks.from_now).to_date,
     project: Project.find(2)
   },
   {
-    title: "VM-Title-3",
-    url: "http://www.rand-link-3.com",
-    media: 1,
+    title: "Medium-Title-3",
+    author: "Author-3",
+    description: "Description.",
+    location: "Somewhere",
+    date: rand(1.year.ago..50.weeks.from_now).to_date,
     project: Project.find(3)
   },
   {
-    title: "VM-Title-4",
-    url: "http://www.rand-link-4.com",
-    media: 0,
-    project: Project.find(4)
+    title: "Medium-Title-4",
+    author: "Author-4",
+    description: "Description.",
+    location: "Somewhere",
+    date: rand(1.year.ago..50.weeks.from_now).to_date,
+    project: Project.find(1)
   },
   {
-    title: "VM-Title-5",
-    url: "http://www.rand-link-5.com",
-    media: 0,
+    title: "Medium-Title-5",
+    author: "Author-5",
+    description: "Description.",
+    location: "Somewhere",
+    date: rand(1.year.ago..50.weeks.from_now).to_date,
     project: Project.find(1)
+  },
+  {
+    title: "Doc-Title-6",
+    author: "Author-6",
+    description: "Description.",
+    location: "Somewhere",
+    date: rand(1.year.ago..50.weeks.from_now).to_date,
+    project: Project.find(2)
   }
 ])

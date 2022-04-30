@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class VisualMediumPolicyTest < ActiveSupport::TestCase
+class MediumPolicyTest < ActiveSupport::TestCase
   def test_scope
   end
 
