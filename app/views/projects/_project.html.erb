@@ -1,37 +1,10 @@
-<div id="<%= dom_id project %>">
-  <p>
-    <strong>Title:</strong>
-    <%= project.title %>
-  </p>
-
-  <p>
-    <strong>Subject:</strong>
-    <%= project.subject %>
-  </p>
-
-  <p>
-    <strong>Category:</strong>
-    <%= project.category %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= project.description %>
-  </p>
-
-  <p>
-    <strong>Location:</strong>
-    <%= project.location %>
-  </p>
-
-  <p>
-    <strong>Date:</strong>
-    <%= project.date %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= project.user_id %>
-  </p>
-
-</div>
+<article class="post-<%= project.id %>">
+  Title : <%= project.title.humanize %><br/>
+  Subject : <%= project.subject %><br/>
+  Category : <%= project.category.humanize %><br/>
+  Description : <%= project.description %><br/>
+  Location : <%= project.location %><br/>
+  Date : <%= project.date %><br/>
+  Posted by : <%= project.user.username %>, <%= project.user.email.humanize %><br/>
+</article>
+<br/>

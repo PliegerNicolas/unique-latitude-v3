@@ -13,4 +13,8 @@ class User < ApplicationRecord
   def set_default_role
     self.role ||= :user
   end
+
+  def staff?
+    self.role == "admin" || self.role == "moderator"
+  end
 end

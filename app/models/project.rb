@@ -2,6 +2,8 @@ class Project < ApplicationRecord
   has_many :media
   belongs_to :user
 
+  validates :title, :subject, :category, :published, :user_id, presence: true
+
   enum category: [:documentary, :institutional, :event]
   enum published: [:unpublished, :published]
 

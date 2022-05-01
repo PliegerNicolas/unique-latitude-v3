@@ -1,5 +1,14 @@
 class MediaController < ApplicationController
   before_action :set_medium, only: %i[ edit update destroy ]
+  before_action :set_project, only: %i[ create edit update ]
+
+  # GET /media
+  # def index
+  # end
+
+  # GET /media/1
+  # def show
+  # end
 
   # GET /media/new
   def new
@@ -11,16 +20,18 @@ class MediaController < ApplicationController
   def edit
   end
 
-  # POST /mediums
+  # POST /media
   def create
-    @medium = Medium.new(medium_params)
+    @medium = @project.media.create(medium_params)
     authorize @medium
 
     respond_to do |format|
       if @medium.save
-        format.html { redirect_to medium_url(@medium), notice: "Medium was successfully created." }
+        format.html { redirect_to project_url(@medium.project), notice: "Medium was successfully created." }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -29,7 +40,7 @@ class MediaController < ApplicationController
   def update
     respond_to do |format|
       if @medium.update(medium_params)
-        format.html { redirect_to medium_url(@medium), notice: "Medium was successfully updated." }
+        format.html { redirect_to project_url(@medium.project), notice: "Medium was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -38,14 +49,23 @@ class MediaController < ApplicationController
 
   # DELETE /media/1
   def destroy
+    @project = @medium.project
     @medium.destroy
 
     respond_to do |format|
-      format.html { redirect_to media_url, notice: "Medium was successfully destroyed." }
+      format.html { redirect_to project_url(@medium.project), notice: "Medium was successfully destroyed." }
+      format.js
     end
   end
 
   private
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_project
+      @project = Project.find(params[:project_id])
+      authorize @project
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_medium
       @medium = Medium.find(params[:id])

@@ -1,0 +1,13 @@
+<% if @comment.errors.any? %>
+    <%# This removes any error messages that were previously generated. %>
+    document.querySelector('#error_explanation') ? document.querySelector('#error_explanation').remove() : null ;
+    <%# This selects the `<form>` in `app/views/projects/show.html.erb` and dynamically injects the `app/views/shared/_validation-messages.html.erb` partial. %>
+    document.querySelector('#media-form').insertAdjacentHTML('afterbegin', '<%= escape_javascript(render "shared/validation-messages", object: @medium) %>');
+<% else %>
+    <%# This removes any error messages that were previously generated. %>
+    document.querySelector('#error_explanation') ? document.querySelector('#error_explanation').remove() : null ;
+    <%# This selects `<div id="media">` in `app/views/projects/show.html.erb` and dynamically injects the `app/views/media/_medium.html.erb` partial. %>
+    document.querySelector('#media').insertAdjacentHTML('afterbegin', '<%= escape_javascript(render @medium) %>') ;
+    <%# This selects the `<form>` in `app/views/projects/show.html.erb` and resets the text area. %>
+    document.querySelector('#media-form').reset();
+<% end %>

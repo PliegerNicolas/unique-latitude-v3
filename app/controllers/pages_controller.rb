@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   
   def index
-    @projects = Project.find([*1..Project.count].sample(3))
+    @projects = Project.limit(3).where(published: true).order('RANDOM()')
   end
 end

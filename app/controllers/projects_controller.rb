@@ -9,11 +9,15 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
+    @medium = Medium.new(project: @project)
   end
 
   # GET /projects/new
   def new
     @project = Project.new
+    # Set active user as project owner
+    @project.user = current_user
+
     authorize @project
   end
 
@@ -24,7 +28,9 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     @project = Project.new(project_params)
+    # Set active user as project owner
     @project.user = current_user
+
     authorize @project
 
     respond_to do |format|

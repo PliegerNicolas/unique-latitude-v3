@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     before_action :authenticate_user!, except: [:index, :show]
     before_action :configure_permitted_parameters, if: :devise_controller?
 
-  include Pundit
+    include Pundit::Authorization
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -54,6 +54,7 @@ class ApplicationController < ActionController::Base
 
   # Reroll redirection path when unauthorized
   def redirection_reroll
+    session["user_return_to"] ||= request.path
     path_checker = ["new", "edit"]
     path = session["user_return_to"].split("/")
     path.pop() if path_checker.include? path[-1]
