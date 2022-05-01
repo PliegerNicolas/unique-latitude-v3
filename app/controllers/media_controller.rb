@@ -40,7 +40,7 @@ class MediaController < ApplicationController
   def update
     respond_to do |format|
       if @medium.update(medium_params)
-        format.html { redirect_to root_url, notice: "Medium was successfully updated." }
+        format.html { redirect_to project_url(@medium.project), notice: "Medium was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end

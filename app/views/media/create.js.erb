@@ -1,4 +1,4 @@
-<% if @comment.errors.any? %>
+<% if @medium.errors.any? %>
     <%# This removes any error messages that were previously generated. %>
     document.querySelector('#error_explanation') ? document.querySelector('#error_explanation').remove() : null ;
     <%# This selects the `<form>` in `app/views/projects/show.html.erb` and dynamically injects the `app/views/shared/_validation-messages.html.erb` partial. %>
