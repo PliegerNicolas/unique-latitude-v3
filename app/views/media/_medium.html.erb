@@ -7,6 +7,6 @@ Date : <%= medium.date %><br/>
 Project title : <%= medium.project.title %><br/>
 
         <%= link_to "Edit Medium", edit_project_medium_path(medium.project, medium) %>
-        <%= link_to "Delete Medium", project_medium_path(medium.project, medium), method: :delete, remote: true %>
+        <%= link_to "Delete Medium", project_medium_path(medium.project, medium), data: { "turbo-method": :delete } %>
 
 </article>

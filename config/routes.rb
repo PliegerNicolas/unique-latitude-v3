@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'pages#index'
 
   resources :projects do
-    resources :media
+    resources :media, only: %i[ new edit create update destroy ]
   end
 
   devise_for :users

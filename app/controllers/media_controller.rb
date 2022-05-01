@@ -7,8 +7,8 @@ class MediaController < ApplicationController
   # end
 
   # GET /media/1
-  # def show
-  # end
+  #def show
+  #end
 
   # GET /media/new
   def new
@@ -40,7 +40,7 @@ class MediaController < ApplicationController
   def update
     respond_to do |format|
       if @medium.update(medium_params)
-        format.html { redirect_to project_url(@medium.project), notice: "Medium was successfully updated." }
+        format.html { redirect_to root_url, notice: "Medium was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -49,12 +49,10 @@ class MediaController < ApplicationController
 
   # DELETE /media/1
   def destroy
-    @project = @medium.project
     @medium.destroy
 
     respond_to do |format|
-      format.html { redirect_to project_url(@medium.project), notice: "Medium was successfully destroyed." }
-      format.js
+      format.html { redirect_to project_url(@medium.project),status: 303 , notice: "Medium was successfully destroyed." }
     end
   end
 
