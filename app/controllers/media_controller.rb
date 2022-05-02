@@ -22,20 +22,23 @@ class MediaController < ApplicationController
       if @medium.save
         medium = Medium.new
         format.turbo_stream { render turbo_stream: turbo_stream.replace(dom_id_for_records(@project, medium), partial: "media/form", locals: { medium: medium, project: @project }) }
-        format.html { redirect_to @project }
+        format.html { redirect_to project_path(@project) }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(dom_id_for_records(@project, @medium), partial: "media/form", locals: { medium: @medium, project: @project }) }
-        format.html { redirect_to @project }
+        format.html { redirect_to project_path(@project) }
       end
     end
   end
 
   # PATCH/PUT /media/1
   def update
-    if @medium.update(medium_params)
-      redirect_to @medium
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @medium.update(medium_params)
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@medium) }
+        format.html { redirect_to project_medium_path(@medium.project, @medium) }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -44,7 +47,7 @@ class MediaController < ApplicationController
     @medium.destroy
     respond_to do |format|
       format.turbo_stream
-      format.html { redirect_to @medium.project }
+      format.html { redirect_to project_path(@medium.project) }
     end
   end  
 

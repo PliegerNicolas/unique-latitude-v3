@@ -6,6 +6,6 @@
 
   <div>
     <%= link_to "Edit", edit_project_medium_path(medium.project, medium) %>
-    <%= link_to "Delete", project_medium_path(medium.project, medium), method: :delete, data: { confirm: "Are you sure ?" } %>
+    <%= link_to "Delete", project_medium_path(medium.project, medium), data: { "turbo-method": :delete, confirm: "Are you sure ?" } %>
   </div>
 <% end %>
