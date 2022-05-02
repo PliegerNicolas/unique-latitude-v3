@@ -1,3 +1,7 @@
 <%= turbo_stream.append "media" do %>
   <%= render "medium", medium: @medium %>
 <% end %>
+
+<%= turbo_stream.replace "medium_create_form" do %>
+  <% render "form" %>
+<% end %>
