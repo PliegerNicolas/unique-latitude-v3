@@ -1,9 +1,14 @@
+<h1>Project#Show</h1>
+
 <%= render @project %>
+
+<h2>Medium creation form</h2>
 
 <%= render "media/form", medium: Medium.new %>
 
 <br/>
 
+<h2>This project's media</h2>
 <ul id="media">
   <%= render @project.media %>
 </ul>
