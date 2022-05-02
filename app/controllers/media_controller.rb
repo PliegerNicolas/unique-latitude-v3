@@ -27,11 +27,11 @@ class MediaController < ApplicationController
 
     respond_to do |format|
       if @medium.save
+        format.turbo_stream
         format.html { redirect_to project_url(@medium.project), notice: "Medium was successfully created." }
-        format.js
       else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@medium)}_form", partial: "form", locals: { medium: @medium }) }
         format.html { render :new, status: :unprocessable_entity }
-        format.js
       end
     end
   end
@@ -40,8 +40,10 @@ class MediaController < ApplicationController
   def update
     respond_to do |format|
       if @medium.update(medium_params)
+        format.turbo_stream
         format.html { redirect_to project_url(@medium.project), notice: "Medium was successfully updated." }
       else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@medium)}_form", partial: "form", locals: { medium: @medium }) }
         format.html { render :edit, status: :unprocessable_entity }
       end
     end
@@ -52,7 +54,8 @@ class MediaController < ApplicationController
     @medium.destroy
 
     respond_to do |format|
-      format.html { redirect_to project_url(@medium.project),status: 303 , notice: "Medium was successfully destroyed." }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove("#{helpers.dom_id(@medium)}_item") }
+      format.html { redirect_to project_url(@medium.project), notice: "Medium was successfully destroyed." }
     end
   end
 

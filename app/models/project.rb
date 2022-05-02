@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
-  has_many :media
+  has_many :media, dependent: :destroy
   belongs_to :user
 
   validates :title, :subject, :category, :published, :user_id, presence: true

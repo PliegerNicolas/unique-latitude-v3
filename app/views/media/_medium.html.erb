@@ -1,12 +1,13 @@
-<article id="<%= medium.id %>">
-Title : <%= medium.title %><br/>
-Author : <%= medium.author %><br/>
-Description : <%= medium.description %><br/>
-Location : <%= medium.location %><br/>
-Date : <%= medium.date %><br/>
-Project title : <%= medium.project.title %><br/>
+<li id="<%= "#{dom_id(medium)}_item" %>"> <!-- Change naming convention here. -->
+  Title : <%= medium.title %><br/>
+  Author : <%= medium.author %><br/>
+  Description : <%= medium.description %><br/>
+  Location : <%= medium.location %><br/>
+  Date : <%= medium.date %><br/>
+  Project title : <%= medium.project.title %><br/>
 
-        <%= link_to "Edit Medium", edit_project_medium_path(medium.project, medium) %>
-        <%= link_to "Delete Medium", project_medium_path(medium.project, medium), data: { "turbo-method": :delete } %>
-
-</article>
+  <%= turbo_frame_tag dom_id(medium) do %>
+    <%= link_to "Edit", edit_project_medium_path(medium.project, medium) %>
+    <%= link_to "Delete", project_medium_path(medium.project, medium), data: { "turbo-method": :delete } %>
+  <% end %>
+</li>

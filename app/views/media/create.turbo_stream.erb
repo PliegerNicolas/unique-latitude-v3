@@ -1,0 +1,7 @@
+<%= turbo_stream.append "media" do %>
+  <%= render "medium", medium: @medium %>
+<% end %>
+
+<%= turbo_stream.replace "#{dom_id(Medium.new)}_form" do %>
+  <%= render "form", medium: Medium.new %>
+<% end %>

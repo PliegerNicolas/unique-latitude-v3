@@ -24,13 +24,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    # For additional fields in app/views/devise/registrations/new.html.erb
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
-
-    # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:sign_in, keys: [:username])
-
-    # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:account_update, keys: [:username])
   end
 
@@ -47,8 +42,8 @@ class ApplicationController < ActionController::Base
 
   # Redirect if unauthorized by Pundit
   def user_not_authorized
-    session["user_return_to"] = redirection_reroll
     flash[:alert] = "You are not authorized to perform this action."
+    session["user_return_to"] = redirection_reroll
     redirect_to(session["user_return_to"] || root_path)
   end
 

@@ -1,20 +1,16 @@
 <%= render @project %>
 
-<div id="media">
+<%= render "media/form", medium: Medium.new %>
+
+<br/>
+
+<ul id="media">
   <%= render @project.media %>
-</div>
-<% if current_user&.staff? %>
+</ul>
 
-  <br/>
+<%= link_to "Edit this project", edit_project_path(@project) %>
+<%= button_to "Destroy this project", @project, method: :delete %>
 
-  <%= render "media/form" %>
-
-  <br/>
-
-  <%= link_to "Edit this project", edit_project_path(@project) %>
-  <%= button_to "Destroy this project", @project, method: :delete %>
-
-  <br/> 
-<% end %>
+<br/> 
 
 <%= link_to "Back to projects", projects_path %>
