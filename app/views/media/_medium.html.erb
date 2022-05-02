@@ -10,4 +10,13 @@
     <%= link_to "Edit", edit_project_medium_path(medium.project, medium) %>
     <%= link_to "Delete", project_medium_path(medium.project, medium), data: { "turbo-method": :delete } %>
   <% end %>
+
+  <% if medium.visual.attached? %>
+    <% if medium.visual.content_type.include?("image") %>
+      <%= image_tag url_for(medium.visual) %>
+    <% else %>
+      <%= video_tag url_for(medium.visual), controls: true %>
+    <% end %>
+  <% end %>
+
 </li>
