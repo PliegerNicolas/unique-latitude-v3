@@ -3,7 +3,7 @@ class MediaController < ApplicationController
   include ActionView::RecordIdentifier
   
   before_action :set_medium, only: %i[ show edit update destroy ]
-  before_action :set_project, only: %i[ create ]
+  before_action :set_project, only: %i[ edit create update destroy ]
   
   # GET /media/1
   def show
@@ -32,10 +32,20 @@ class MediaController < ApplicationController
 
   # PATCH/PUT /media/1
   def update
+    if @medium.update(medium_params)
+      redirect_to @medium
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   # DELETE /media/1
   def destroy
+    @medium.destroy
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to @medium.project }
+    end
   end  
 
   private
