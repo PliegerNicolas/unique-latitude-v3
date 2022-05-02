@@ -1,41 +1,15 @@
 <% if params[:controller] === 'projects' %>
 
   <%= form_with(model: [@project, medium], id: "#{dom_id(medium)}_form") do |form| %>
-
-    <% if medium.errors.any? %>
-      <div style="color: red">
-        <h2><%= pluralize(medium.errors.count, "error") %> prohibited this medium from being saved:</h2>
-
-        <ul>
-          <% medium.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
+    <%= render 'media/errors', medium: medium %>
     <%= render 'media/form-fields', form: form %>
-
   <% end %>
 
 <% else %>
 
   <%= form_with(model: [@project, @medium], id: "#{dom_id(@medium)}_form") do |form| %>
-
-    <% if @medium.errors.any? %>
-      <div style="color: red">
-        <h2><%= pluralize(@medium.errors.count, "error") %> prohibited this medium from being saved:</h2>
-
-        <ul>
-          <% medium.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
+    <%= render 'media/errors', medium: @medium %>
     <%= render 'media/form-fields', form: form %>
-
   <% end %>
 
 <% end %>

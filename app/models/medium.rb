@@ -1,5 +1,5 @@
 class Medium < ApplicationRecord
-  has_one_attached :visual
+  has_one_attached :visual, dependent: :destroy
   belongs_to :project
 
   validates :title, :priority_index, :project_id, presence: true
