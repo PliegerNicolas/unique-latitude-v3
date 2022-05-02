@@ -4,7 +4,7 @@
   </div>
 
   <div>
-    <%= link_to "Edit", edit_medium_path(medium) %>
-    <%= link_to "Delete", medium_path(medium), method: :delete, data: { confirm: "Are you sure ?" } %>
+    <%= link_to "Edit", edit_project_medium_path(medium.project, medium) %>
+    <%= link_to "Delete", project_medium_path(medium.project, medium), method: :delete, data: { confirm: "Are you sure ?" } %>
   </div>
 <% end %>

@@ -2,10 +2,8 @@ Rails.application.routes.draw do
   root 'pages#index'
 
   resources :projects do
-    resources :media, only: %i[ new edit create update destroy ]
+    resources :media
   end
-
-  resources :media
 
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
