@@ -1,22 +1,10 @@
-<li id="<%= "#{dom_id(medium)}_item" %>"> <!-- Change naming convention here. -->
-  Title : <%= medium.title %><br/>
-  Author : <%= medium.author %><br/>
-  Description : <%= medium.description %><br/>
-  Location : <%= medium.location %><br/>
-  Date : <%= medium.date %><br/>
-  Project title : <%= medium.project.title %><br/>
+<%= turbo_frame_tag medium do %>
+  <div>
+    <p>Title : <%= medium.title %></p>
+  </div>
 
-  <%= turbo_frame_tag dom_id(medium) do %>
-    <%= link_to "Edit", edit_project_medium_path(medium.project, medium) %>
-    <%= link_to "Delete", project_medium_path(medium.project, medium), data: { "turbo-method": :delete } %>
-  <% end %>
-
-  <% if medium.visual.attached? %>
-    <% if medium.visual.content_type.include?("image") %>
-      <%= image_tag url_for(medium.visual) %>
-    <% else %>
-      <%= video_tag url_for(medium.visual), controls: true %>
-    <% end %>
-  <% end %>
-
-</li>
+  <div>
+    <%= link_to "Edit", edit_medium_path(medium) %>
+    <%= link_to "Delete", medium_path(medium), method: :delete, data: { confirm: "Are you sure ?" } %>
+  </div>
+<% end %>

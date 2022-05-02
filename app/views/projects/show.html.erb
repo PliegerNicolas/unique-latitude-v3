@@ -4,14 +4,17 @@
 
 <h2>Medium creation form</h2>
 
-<%= render "media/form" %>
+<!-- Form to create Medium-->
+<%= render partial: "media/form", locals: { medium: Medium.new, project: @project } %>
 
 <br/>
 
 <h2>This project's media</h2>
-<ul id="media">
+<%= turbo_stream_from @project, :media %>
+
+<%= tag.div id: "#{dom_id(@project)}_media" do %>
   <%= render @project.media %>
-</ul>
+<% end %>
 
 <%= link_to "Edit this project", edit_project_path(@project) %>
 <%= button_to "Destroy this project", @project, method: :delete %>
