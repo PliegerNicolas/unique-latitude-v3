@@ -7,6 +7,10 @@ class Project < ApplicationRecord
   enum category: [:documentary, :institutional, :event]
   enum published: [:unpublished, :published]
 
+  scope :filter_by_status, ->(status) { where(published: status) }
+  scope :filter_by_title, ->(title) { where("title ILIKE ?", "%#{title}%") }
+  scope :filter_by_category, ->(category) { where(category: category) }
+
   before_create :slugify
 
   def slugify

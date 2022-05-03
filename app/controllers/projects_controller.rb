@@ -7,7 +7,17 @@ class ProjectsController < ApplicationController
   # GET /projects
   def index
     @projects = policy_scope(Project).order(date: :desc)
+
+    @projects = @projects.filter_by_title(params[:title]) if params[:title].present?  
+    @projects = @projects.filter_by_category(params[:category]) if params[:category].present?  
+
     authorize Project
+
+    if turbo_frame_request?
+      render partial: "projects", locals: { projects: @projects }
+    else
+      render :index
+    end
   end
 
   # GET /projects/1

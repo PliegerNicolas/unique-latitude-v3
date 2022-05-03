@@ -1,4 +1,4 @@
-<article class="project-<%= project.id %>">
+<article id="<%= dom_id project %>">
   Title : <%= project.title.humanize %><br/>
   Subject : <%= project.subject %><br/>
   Category : <%= project.category.humanize %><br/>
@@ -8,4 +8,6 @@
   Published_state : <%= project.published %><br/>
   Posted by : <%= project.user.username %>, <%= project.user.email.humanize %><br/>
 </article>
+<%= link_to "See project", project %>
+<br/>
 <br/>

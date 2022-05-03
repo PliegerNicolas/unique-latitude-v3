@@ -1,11 +1,20 @@
 <h1>Projects#index</h1>
 <p>Find me in app/views/projects/index.html.erb</p>
 
+<%= form_with(url: projects_path, method: :get, data: { turbo_frame: "projects" }) do |form| %>
+  <%= form.label :title, "Search by Title" %>
+  <%= form.text_field :title %>
+
+  <%= form.label :category, "Search by Category" %>
+  <%= form.select :category, Project.categories.keys.map { |c| [c.humanize, c] }, include_blank: true, default: 0 %>
+
+  <%= form.submit "Search" %>
+<% end %>
+
+<br/>
+
 <div id="projects">
-  <% @projects.each do |project| %> <!-- Show all projects -->
-    <%= link_to "See project", project %>
-    <%= render project %>
-  <% end %>
+  <%= render "projects", projects: @projects %>
 </div>
 
 <% if current_user&.staff? %> <!-- Propose new project to admin and moderator -->
