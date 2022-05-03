@@ -2,11 +2,8 @@
 <p>Find me in app/views/projects/index.html.erb</p>
 
 <%= form_with(url: projects_path, method: :get, data: { turbo_frame: "projects" }) do |form| %>
-  <%= form.label :title, "Search by Title" %>
-  <%= form.text_field :title %>
-
-  <%= form.label :category, "Search by Category" %>
-  <%= form.select :category, Project.categories.keys.map { |c| [c.humanize, c] }, include_blank: true, default: 0 %>
+  <%= form.text_field :title, data: { action: "input->search-form#search1" }, data: { action: "change->search-form#search" } %>
+  <%= form.collection_select :category, Project.categories.keys, :to_s, :titlecase, { include_blank: true, default: 0 }, data: { action: "change->search-form#search" } %>
 
   <%= form.submit "Search" %>
 <% end %>
@@ -14,7 +11,10 @@
 <br/>
 
 <div id="projects">
-  <%= render "projects", projects: @projects %>
+  <% @projects.each do |project| %>
+    <%= render project %>
+    <%= link_to "See project", project %>
+  <% end %>
 </div>
 
 <% if current_user&.staff? %> <!-- Propose new project to admin and moderator -->
