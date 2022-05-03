@@ -32,4 +32,6 @@
     <%= form.submit %>
   </div>
 
-  <%# link_to "Cancel", project_medium_path(medium.project, medium), class: "to_replace" if form.object.persisted?%>
+  <% if form.object.persisted? %>
+    <%= link_to "Cancel", project_medium_cancel_path(medium.project, medium) %>
+  <% end %>

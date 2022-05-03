@@ -22,18 +22,22 @@ class MediumPolicy < ApplicationPolicy
   end
 
   def create?
-    user.admin? || user.moderator?
+    user.staff?
   end
 
   def edit?
-    user.admin? || user.moderator?
+    user.staff?
   end
 
   def update?
-    user.admin? || user.moderator?
+    user.staff?
   end
 
   def destroy?
-    user.admin? || user.moderator?
+    user.staff?
+  end
+
+  def cancel?
+    user.staff?
   end
 end

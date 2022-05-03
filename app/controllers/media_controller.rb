@@ -2,7 +2,7 @@ class MediaController < ApplicationController
   include RecordHelper
   include ActionView::RecordIdentifier
   
-  before_action :set_medium, only: %i[ show edit update destroy ]
+  before_action :set_medium, only: %i[ show edit update destroy cancel ]
   before_action :set_project, only: %i[ edit create update destroy ]
   
   # GET /media/1
@@ -49,7 +49,15 @@ class MediaController < ApplicationController
       format.turbo_stream
       format.html { redirect_to project_path(@medium.project) }
     end
-  end  
+  end
+
+  # DELETE /media/1/cancel
+  def cancel
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to project_path(@medium.project) }
+    end
+  end
 
   private
 
