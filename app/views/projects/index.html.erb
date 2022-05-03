@@ -1,21 +1,22 @@
-<h1>Projects#index</h1>
-<p>Find me in app/views/projects/index.html.erb</p>
+<h1>Projects</h1>
 
-<%= form_with(url: projects_path, method: :get, data: { turbo_frame: "projects", turbo_action: "advance", controller: "search-form" }) do |form| %>
-  <%= form.text_field :title, data: { action: "input->search-form#search" } %>
-  <%= form.collection_select :category, Project.categories.keys, :to_s, :titlecase, { include_blank: true, default: 0 }, data: { action: "change->search-form#search" } %>
+<!-- Query form -->
 
-  <%= form.submit "Search" %>
+<%= form_tag projects_path, method: :get, data: { turbo_frame: "filter-results", turbo_action: "advance", controller: "filter", action: "input->filter#submit" } do |f| %>
+  <%= text_field_tag "title", nil, placeholder: "Search ..." %>
+  <%= select_tag "category", options_from_collection_for_select(Project.categories.keys, :to_s, :titlecase), include_blank: true, default: 0 %>
+  <%= submit_tag "Search" %>
 <% end %>
 
 <br/>
 
-<div id="projects">
-  <% @projects.each do |project| %>
-    <%= render project %>
-    <%= link_to "See project", project %>
-  <% end %>
-</div>
+<!-- Projects list -->
+
+<%= turbo_frame_tag "filter-results" do %>
+  <%= render partial: "projects", locals: { projects: @projects } %>
+<% end %>
+
+<br/>
 
 <% if current_user&.staff? %> <!-- Propose new project to admin and moderator -->
   <%= link_to "New project", new_project_path %>
