@@ -1,8 +1,8 @@
 <h1>Projects#index</h1>
 <p>Find me in app/views/projects/index.html.erb</p>
 
-<%= form_with(url: projects_path, method: :get, data: { turbo_frame: "projects" }) do |form| %>
-  <%= form.text_field :title, data: { action: "input->search-form#search1" }, data: { action: "change->search-form#search" } %>
+<%= form_with(url: projects_path, method: :get, data: { turbo_frame: "projects", turbo_action: "advance", controller: "search-form" }) do |form| %>
+  <%= form.text_field :title, data: { action: "input->search-form#search" } %>
   <%= form.collection_select :category, Project.categories.keys, :to_s, :titlecase, { include_blank: true, default: 0 }, data: { action: "change->search-form#search" } %>
 
   <%= form.submit "Search" %>
