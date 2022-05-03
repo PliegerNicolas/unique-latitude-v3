@@ -11,6 +11,10 @@ class Medium < ApplicationRecord
     broadcast_append_to [project, :media], target: "#{dom_id(project)}_media"
   end
 
+  after_update_commit do
+    broadcast_update_to self
+  end
+
   after_destroy_commit do
     broadcast_remove_to self
   end
