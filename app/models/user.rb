@@ -17,4 +17,14 @@ class User < ApplicationRecord
   def staff?
     self.role == "admin" || self.role == "moderator"
   end
+
+  def promote
+    role = self.role_before_type_cast
+    role.between?(0,1) ? self.role = role + 1 : self.role = role
+  end
+
+  def demote
+    role = self.role_before_type_cast
+    role.between?(1,2) ? self.role = role - 1 : self.role = role
+  end
 end
