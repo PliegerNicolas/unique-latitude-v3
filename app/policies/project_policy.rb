@@ -1,11 +1,12 @@
 class ProjectPolicy < ApplicationPolicy
-  class Scope < Scope
-    # NOTE: Be explicit about which records you allow access to!
-    # def resolve
-    #   scope.all
-    # end
+  class Scope
+    def initialize(user, scope)
+      @user  = user
+      @scope = scope
+    end
+
     def resolve
-      if user&.admin? || user&.moderator?
+      if user&.staff?
         scope.all
       else
         scope.where(published: true)        
@@ -17,31 +18,28 @@ class ProjectPolicy < ApplicationPolicy
     attr_reader :user, :scope
   end
 
+  # Everyone can index
   def index?
     true
   end
 
+  # Everyone can show
   def show?
     true
   end
 
+  # Staff member can new/create
   def create?
-    user.staff?
+    user&.staff?
   end
 
-  def edit?
-    user.staff?
-  end
-
+  # Staff member can edit/update
   def update?
-    user.staff?
+    user&.staff?
   end
 
+  # Staff member can destroy
   def destroy?
-    user.staff?
-  end
-
-  def cancel?
-    user.staff?
+    user&.staff?
   end
 end

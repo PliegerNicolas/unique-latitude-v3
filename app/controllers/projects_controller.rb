@@ -8,10 +8,11 @@ class ProjectsController < ApplicationController
   def index
     @projects = policy_scope(Project).order(date: :desc)
 
+    # Query
     @projects = @projects.filter_by_title(params[:title]) if params[:title].present?  
     @projects = @projects.filter_by_category(params[:category]) if params[:category].present?  
 
-    authorize Project
+    authorize Project # Because after_action :verify_authorized on all
   end
 
   # GET /projects/1

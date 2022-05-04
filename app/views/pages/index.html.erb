@@ -12,7 +12,7 @@
 <br/>
 
 <% if current_user %>
-  <% if current_user.admin? %>
+  <% if current_user.staff? %>
     <p>There are <%= User.count %> users in the system.</p>
   <% end %>
 
@@ -31,3 +31,5 @@
   <%= link_to "Sign Up", new_user_registration_path %>
   <%= link_to "Login", new_user_session_path %>
 <% end %>
+
+<%= link_to "Users admin panel", users_path %>
