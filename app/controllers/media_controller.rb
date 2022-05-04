@@ -71,7 +71,7 @@ class MediaController < ApplicationController
   end
 
   def set_project
-    @project = Project.find(params[:project_id])
+    @project = Project.friendly.find(params[:project_id])
     authorize @project
   end
 end

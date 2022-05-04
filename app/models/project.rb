@@ -22,4 +22,10 @@ class Project < ApplicationRecord
   scope :filter_by_status, ->(status) { where(published: status) }
   scope :filter_by_title, ->(title) { where("title ILIKE ?", "%#{title}%") }
   scope :filter_by_category, ->(category) { where(category: category) }
+
+  private
+
+  def should_generate_new_friendly_id?
+    title_changed?
+  end  
 end
