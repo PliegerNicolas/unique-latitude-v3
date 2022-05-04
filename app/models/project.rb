@@ -2,19 +2,24 @@ class Project < ApplicationRecord
   has_many :media, dependent: :destroy
   belongs_to :user
 
-  validates :title, :subject, :category, :published, :user_id, presence: true
+  # Friendly Id sluggable
+
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
+  # Validations 
+
+  validates :title, :category, :published, :user_id, presence: true
+  validates :title, :slug, uniqueness: true
+
+  # Enums
 
   enum category: [:documentary, :institutional, :event]
   enum published: [:unpublished, :published]
 
+  # Scopes
+
   scope :filter_by_status, ->(status) { where(published: status) }
   scope :filter_by_title, ->(title) { where("title ILIKE ?", "%#{title}%") }
   scope :filter_by_category, ->(category) { where(category: category) }
-
-  before_create :slugify
-
-  def slugify
-    # This method is designed to make safe for URL usage the title of the project.
-    self.slug = title.parameterize
-  end
 end

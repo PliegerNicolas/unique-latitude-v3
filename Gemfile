@@ -71,6 +71,15 @@ group :test do
   gem "webdrivers"
 end
 
+# Custom gems // start
+
+# Smart authentification with Devise [https://github.com/heartcombo/devise]
 gem "devise", "~> 4.8"
 
+# Smart authorization with Pundit [https://github.com/varvet/pundit]
 gem "pundit", "~> 2.2"
+
+# Generate easly slugs for your urls [https://github.com/norman/friendly_id]
+gem 'friendly_id', '~> 5.4.0'
+
+# Custom gems // stop
