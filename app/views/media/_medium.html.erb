@@ -2,6 +2,16 @@
 <%= turbo_frame_tag medium do %>
   <div>
     <p>Title : <%= medium.title %></p>
+
+    <!-- Video or image -->
+    <% if medium.visual.attached? %>
+      <% if medium.visual.content_type.include?("image") %>
+        <%= image_tag url_for(medium.visual) %>
+      <% else %>
+        <%= video_tag url_for(medium.visual), controls: true %>
+      <% end %>
+    <% end %>
+
   </div>
 
   <div>
