@@ -25,7 +25,7 @@ class MediaController < ApplicationController
         format.html { redirect_to project_path(@project) }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(dom_id_for_records(@project, @medium), partial: "media/form", locals: { medium: @medium, project: @project }) }
-        format.html { redirect_to project_path(@project) }
+        format.html { render :create, status: :unprocessable_entity }
       end
     end
   end
@@ -44,10 +44,13 @@ class MediaController < ApplicationController
 
   # DELETE /media/1
   def destroy
-    @medium.destroy
     respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to project_path(@medium.project) }
+      if @medium.destroy
+        format.turbo_stream
+        format.html { redirect_to project_path(@medium.project) }
+      else
+        format.html { render :destroy, status: :unprocessable_entity }        
+      end
     end
   end
 
