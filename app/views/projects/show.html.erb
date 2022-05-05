@@ -2,11 +2,12 @@
 
 <%= render @project %>
 
-<h2>Medium creation form</h2>
+<% if current_user.staff? %>
+  <h2>Medium creation form</h2>
 
-<!-- Form to create Medium-->
-<%= render partial: "media/form", locals: { medium: Medium.new, project: @project } %>
-
+  <!-- Form to create Medium-->
+  <%= render partial: "media/form", locals: { medium: Medium.new, project: @project } %>
+<% end %>
 <br/>
 
 <h2>This project's media</h2>
@@ -16,8 +17,10 @@
   <%= render @project.media %>
 <% end %>
 
-<%= link_to "Edit this project", edit_project_path(@project) %>
-<%= button_to "Destroy this project", @project, method: :delete %>
+<% if current_user.staff? %>
+  <%= link_to "Edit this project", edit_project_path(@project) %>
+  <%= button_to "Destroy this project", @project, method: :delete %>
+<% end %>
 
 <br/> 
 

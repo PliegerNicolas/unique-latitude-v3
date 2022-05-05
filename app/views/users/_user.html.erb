@@ -2,6 +2,10 @@
   <%= user.username %>
   <%= user.email %>
   <%= user.role %>
-  <%= link_to "Promote", promote_path(user) %>
-  <%= link_to "Demote", demote_path(user) %>
+
+  <% if current_user.admin? %>
+    <%= link_to "Promote", promote_path(user) %>
+    <%= link_to "Demote", demote_path(user) %>
+  <% end %>
+  
 </div>

@@ -18,9 +18,9 @@
 
 <br/>
 
-<% if current_user&.staff? %> <!-- Propose new project to admin and moderator -->
+<% if current_user&.staff? %>
   <%= link_to "New project", new_project_path %>
   <br/>
 <% end %>
 
-<%= link_to "Index", root_path %> <!-- Link to index -->
+<%= link_to "Index", root_path %>
