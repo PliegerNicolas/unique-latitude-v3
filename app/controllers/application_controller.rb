@@ -26,24 +26,25 @@ class ApplicationController < ActionController::Base
   # Redirect if unauthorized by Pundit
   def user_not_authorized
     flash[:alert] = "You are not authorized to perform this action."
-    session["user_return_to"] = redirection_reroll
-    redirect_to(session["user_return_to"] || root_path)
+    # session["user_return_to"] = redirection_reroll
+    # redirect_to(session["user_return_to"] || root_path)
+    redirect_back(fallback_location: root_path)
   end
 
   # Reroll redirection path when unauthorized
   # /!\ This method isn't perfectly working /!\
-  def redirection_reroll
-    session["user_return_to"] ||= request.path
-    path_checker = ["new", "edit"]
-    path = session["user_return_to"].split("/")
-    path.pop() if path_checker.include? path[-1]
-    session["user_return_to"] = path.join("/")
-  end
+  # def redirection_reroll
+  #   session["user_return_to"] ||= request.path
+  #   path_checker = ["new", "edit"]
+  #   path = session["user_return_to"].split("/")
+  #   path.pop() if path_checker.include? path[-1]
+  #   session["user_return_to"] = path.join("/")
+  # end
 
     # Redirect after login via Devise
-    def after_sign_in_path_for(resource)
-      session["user_return_to"] || root_path
-    end
+    # def after_sign_in_path_for(resource)
+    #   session["user_return_to"] || root_path
+    # end
 
   protected
 

@@ -1,7 +1,7 @@
 class MediaController < ApplicationController
   include RecordHelper
   include ActionView::RecordIdentifier
-  
+
   before_action :set_medium, only: %i[ show edit update destroy cancel ]
   before_action :set_project, only: %i[ edit create update destroy ]
   

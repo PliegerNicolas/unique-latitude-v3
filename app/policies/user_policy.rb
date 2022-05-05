@@ -7,7 +7,7 @@ class UserPolicy < ApplicationPolicy
 
     def resolve
       if user&.staff?
-        scope.all
+        scope.where('id != ?', user.id)
       else
         scope.none       
       end

@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   include RecordHelper
   include ActionView::RecordIdentifier
   
+  before_action :authenticate_user!, only: %i[ new edit create update destroy ]
   before_action :set_project, only: %i[ show edit update destroy ]
 
   # GET /projects

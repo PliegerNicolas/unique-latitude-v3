@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   after_action :verify_authorized
 
   def index
-    @users = policy_scope(User)
+    @users = policy_scope(User).order(role: :desc, created_at: :desc)
     authorize User
   end
 
