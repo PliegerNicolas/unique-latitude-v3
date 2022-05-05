@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def promote
-    @user.promote
+    @user.promote if current_user&.role_before_type_cast > @user.role_before_type_cast
 
     respond_to do |format|
       if @user.save
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def demote
-    @user.demote
+    @user.demote if current_user&.role_before_type_cast > @user.role_before_type_cast
     
     respond_to do |format|
       if @user.save
