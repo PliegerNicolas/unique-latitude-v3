@@ -3,8 +3,8 @@
 <!-- Query form -->
 
 <%= form_tag users_path, method: :get, data: { turbo_frame: "users-filter-results", turbo_action: "advance", controller: "filter", action: "input->filter#submit" } do |f| %>
-  <%= text_field_tag "username", nil, placeholder: "Search by username ..." %>
-  <%= submit_tag "Search" %>
+<%= text_field_tag "username", nil, placeholder: "Search by username ..." %>
+<%= submit_tag "Search" %>
 <% end %>
 
 <br/>

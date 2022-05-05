@@ -1,13 +1,11 @@
 <%= turbo_stream_from user %>
-<%= turbo_frame_tag user do %>
-  <div>
-    <%= user.username %>
-    <%= user.email %>
-    <%= user.role %>
+<div id="<%= dom_id(user) %>">
+  <%= user.username %>
+  <%= user.email %>
+  <%= user.role %>
 
-    <% if current_user.staff? %>
-      <%= link_to "Promote", promote_path(user) %>
-      <%= link_to "Demote", demote_path(user) %>
-    <% end %>
-  </div>
-<% end %>
+  <%# if current_user.staff? %>
+    <%= link_to "Promote", promote_path(user) %>
+    <%= link_to "Demote", demote_path(user) %>
+  <%# end %>
+</div>
