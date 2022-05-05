@@ -27,4 +27,8 @@ class User < ApplicationRecord
     role = self.role_before_type_cast
     role.between?(1,2) ? self.role = role - 1 : self.role = role
   end
+
+  def permited?(user)
+    self.role_before_type_cast > user.role_before_type_cast
+  end
 end
