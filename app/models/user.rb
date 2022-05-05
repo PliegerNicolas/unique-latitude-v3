@@ -20,7 +20,7 @@ class User < ApplicationRecord
 
   def promote
     role = self.role_before_type_cast
-    role.between?(0,1) ? self.role = role + 1 : self.role = role
+    role = 0 ? self.role = role + 1 : self.role = role
   end
 
   def demote

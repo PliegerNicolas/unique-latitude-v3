@@ -22,4 +22,12 @@ class UserPolicy < ApplicationPolicy
   def index?
     user&.staff?
   end
+
+  def promote?
+    user&.admin?
+  end
+
+  def demote?
+    user&.admin?
+  end
 end

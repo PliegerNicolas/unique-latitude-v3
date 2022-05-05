@@ -11,8 +11,6 @@ class ProjectsController < ApplicationController
     # Query
     @projects = @projects.filter_by_title(params[:title]) if params[:title].present?  
     @projects = @projects.filter_by_category(params[:category]) if params[:category].present?  
-
-    authorize Project # Because after_action :verify_authorized on all
   end
 
   # GET /projects/1

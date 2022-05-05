@@ -8,21 +8,21 @@
 
 users = User.create([ # 3 Users
     {
-      username: "admin",
+      username: "user_1",
       email: "email1@example.com",
       password: "password",
       password_confirmation: "password",
       role: 2
     },
     {
-      username: "moderator",
+      username: "user_2",
       email: "email2@example.com",
       password: "password",
       password_confirmation: "password",
       role: 1
     },
     {
-      username: "user",
+      username: "user_3",
       email: "email3@example.com",
       password: "password",
       password_confirmation: "password",
