@@ -24,10 +24,10 @@ class UserPolicy < ApplicationPolicy
   end
 
   def promote?
-    user&.admin?
+    user&.staff?
   end
 
   def demote?
-    user&.admin?
+    user&.staff?
   end
 end

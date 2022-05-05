@@ -5,12 +5,12 @@ class UsersController < ApplicationController
   after_action :verify_authorized
 
   def index
-    @users = policy_scope(User).order(role: :desc, created_at: :desc)
+    @users = policy_scope(User).order(role: :desc, created_at: :asc)
     authorize User
   end
 
   def promote
-    @user.promote if current_user.permited?(@user)
+    @user.promote if current_user&.promotion_permitted?(@user)
 
     respond_to do |format|
       if @user.save
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def demote
-    @user.demote if current_user.permited?(@user)
+    @user.demote if current_user&.demotion_permitted?(@user)
     
     respond_to do |format|
       if @user.save

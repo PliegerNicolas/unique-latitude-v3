@@ -3,7 +3,7 @@
   <%= user.email %>
   <%= user.role %>
 
-  <% if current_user.admin? %>
+  <% if current_user.staff? %>
     <%= link_to "Promote", promote_path(user) %>
     <%= link_to "Demote", demote_path(user) %>
   <% end %>
