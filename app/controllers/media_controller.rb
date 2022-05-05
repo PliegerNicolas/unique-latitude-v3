@@ -21,11 +21,11 @@ class MediaController < ApplicationController
     respond_to do |format|
       if @medium.save
         medium = Medium.new
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(dom_id_for_records(@project, medium), partial: "media/form", locals: { medium: medium, project: @project }) }
+        format.turbo_stream
         format.html { redirect_to project_path(@project) }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(dom_id_for_records(@project, @medium), partial: "media/form", locals: { medium: @medium, project: @project }) }
-        format.html { render :create, status: :unprocessable_entity }
+        format.turbo_stream
+        format.html { render :new, status: :unprocessable_entity }
       end
     end
   end
