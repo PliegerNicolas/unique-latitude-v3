@@ -1,3 +1,5 @@
+  <div id="projects-list" data-controller="users">
     <% users.each do |user| %>
-      <%= render @user  %>
+      <%= render partial: "user", locals: { user: user }  %>
     <% end %>
+  </div>

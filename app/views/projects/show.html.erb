@@ -2,7 +2,7 @@
 
 <%= render @project %>
 
-<% if current_user.staff? %>
+<% if current_user&.staff? %>
   <h2>Medium creation form</h2>
 
   <!-- Form to create Medium-->
@@ -17,7 +17,7 @@
   <%= render @project.media %>
 <% end %>
 
-<% if current_user.staff? %>
+<% if current_user&.staff? %>
   <%= link_to "Edit this project", edit_project_path(@project) %>
   <%= button_to "Destroy this project", @project, method: :delete %>
 <% end %>
