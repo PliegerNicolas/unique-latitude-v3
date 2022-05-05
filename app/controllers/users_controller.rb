@@ -6,6 +6,10 @@ class UsersController < ApplicationController
 
   def index
     @users = policy_scope(User).order(role: :desc, created_at: :asc)
+
+    # Query
+    @users = @users.filter_by_username(params[:username]) if params[:username].present?
+
     authorize User
   end
 

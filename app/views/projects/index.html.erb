@@ -2,7 +2,7 @@
 
 <!-- Query form -->
 
-<%= form_tag projects_path, method: :get, data: { turbo_frame: "filter-results", turbo_action: "advance", controller: "filter", action: "input->filter#submit" } do |f| %>
+<%= form_tag projects_path, method: :get, data: { turbo_frame: "projects-filter-results", turbo_action: "advance", controller: "filter", action: "input->filter#submit" } do |f| %>
   <%= text_field_tag "title", nil, placeholder: "Search ..." %>
   <%= select_tag "category", options_from_collection_for_select(Project.categories.keys, :to_s, :titlecase), include_blank: true, default: 0 %>
   <%= submit_tag "Search" %>
@@ -12,7 +12,7 @@
 
 <!-- Projects list -->
 
-<%= turbo_frame_tag "filter-results" do %>
+<%= turbo_frame_tag "projects-filter-results" do %>
   <%= render partial: "projects", locals: { projects: @projects } %>
 <% end %>
 
