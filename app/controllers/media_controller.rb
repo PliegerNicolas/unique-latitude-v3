@@ -69,12 +69,12 @@ class MediaController < ApplicationController
   end
 
   def set_medium
-    @medium = Medium.find(params[:id])
+    @medium = policy_scope(Medium).find(params[:id])
     authorize @medium
   end
 
   def set_project
-    @project = Project.friendly.find(params[:project_id])
+    @project = policy_scope(Project).friendly.find(params[:project_id])
     authorize @project
   end
 end

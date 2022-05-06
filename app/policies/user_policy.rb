@@ -24,10 +24,10 @@ class UserPolicy < ApplicationPolicy
   end
 
   def promote?
-    user&.staff?
+    user&.promotion_permitted?(record)
   end
 
   def demote?
-    user&.staff?
+    user&.demotion_permitted?(record)
   end
 end
