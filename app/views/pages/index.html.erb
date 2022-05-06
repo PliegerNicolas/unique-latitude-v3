@@ -21,9 +21,6 @@
 
   <% if current_user.staff? %>
     <p>There are <%= User.count %> users in the system.</p>
-    <div>
-      <%= link_to "Users admin panel", users_path %>
-    </div>
     <br/>
   <% end %>
 
@@ -37,3 +34,7 @@
     <%= link_to "Sign Up", new_user_registration_path %>
   </div>
 <% end %>
+
+<div>
+  <%= link_to "Users admin panel", users_path %>
+</div>
