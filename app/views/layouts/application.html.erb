@@ -11,7 +11,9 @@
   </head>
 
   <body>
+    <%= render partial: "layouts/shared/header" %>
     <%= yield %>
-    <%= render("layouts/shared/flash") %>
+    <%= render partial: "layouts/shared/flash" %>
+    <%= render partial: "layouts/shared/footer" %>
   </body>
 </html>
