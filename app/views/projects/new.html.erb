@@ -1,8 +1,3 @@
 <h1>New project</h1>
 
-<%= render "form", project: @project %>
-
-<br/>
-
-<%= link_to "Back to projects", projects_path %>
-<%= link_to "Index", root_path %>
+<%= render partial: "projects/partials/form", locals: { project: @project } %>

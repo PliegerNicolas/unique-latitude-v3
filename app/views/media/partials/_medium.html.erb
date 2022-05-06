@@ -1,0 +1,17 @@
+<div>
+  Title : <%= medium.title %>
+  Description : <%= medium.description %>
+  Author : <%= medium.author %>
+  Location : <%= medium.location %>
+  Date : <%= medium.date %>
+  priority_index : <%= medium.priority_index %>
+  
+  <% if medium.visual.attached? %>
+    <% if medium.visual.content_type.include?("image") %>
+      <%= image_tag url_for(medium.visual) %>
+    <% else %>
+      <%= video_tag url_for(medium.visual), controls: true %>
+    <% end %>
+  <% end %>
+
+</div>

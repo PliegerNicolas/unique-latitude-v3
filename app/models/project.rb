@@ -1,4 +1,6 @@
 class Project < ApplicationRecord
+  # Relationships
+  
   has_many :media, dependent: :destroy
   belongs_to :user
 
@@ -22,6 +24,12 @@ class Project < ApplicationRecord
   scope :filter_by_status, ->(status) { where(status: status) }
   scope :filter_by_title, ->(title) { where("title ILIKE ?", "%#{title}%") }
   scope :filter_by_category, ->(category) { where(category: category) }
+
+  # Actions
+
+  # Turbo_stream
+
+  # Custom entity Methods
 
   def change_status!
     if self.status == "unpublished"

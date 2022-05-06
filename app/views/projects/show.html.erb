@@ -1,28 +1,19 @@
-<h1>Project#Show</h1>
+<h1>Project#Show</h2>
 
-<%= render @project %>
+<h2>Project info</h2>
+<%= render partial: "projects/partials/project", locals: { project: @project } %>
 
-<% if current_user&.staff? %>
-  <h2>Medium creation form</h2>
+<h2>Project's media</h2>
 
-  <!-- Form to create Medium-->
-  <%= render partial: "media/form", locals: { medium: Medium.new, project: @project } %>
-<% end %>
-<br/>
+<div id="media">
+  <%= render partial: "media/partials/media", locals: { media: @project.media } %>
+</div>
 
-<h2>This project's media</h2>
-<%= turbo_stream_from @project, :media %>
+<div>
+  <%= link_to "Edit project", edit_project_path(@project) %>
+</div>
 
-<%= tag.div id: "#{dom_id(@project)}_media" do %>
-  <%= render @project.media %>
-<% end %>
-
-<% if current_user&.staff? %>
-  <%= link_to "Edit this project", edit_project_path(@project) %>
-  <%= button_to "Destroy this project", @project, method: :delete %>
-<% end %>
-
-<br/> 
-
-<%= link_to "#{@project.published? ? "Unpublish" : "Publish"}", project_change_status_path(@project) %>
-<%= link_to "Back to projects", projects_path %>
+<div>
+  <%= link_to "Projects", projects_path %>
+  <%= link_to "Home", root_path %>
+</div>

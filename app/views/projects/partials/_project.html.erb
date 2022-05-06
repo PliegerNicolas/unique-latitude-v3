@@ -1,10 +1,14 @@
-<article id="<%= dom_id(project) %>">
+<div>
   Title : <%= project.title.humanize %><br/>
   Subject : <%= project.subject %><br/>
   Category : <%= project.category.humanize %><br/>
   Description : <%= project.description %><br/>
   Location : <%= project.location %><br/>
   Date : <%= project.date %><br/>
-  Published_state : <%= project.status %><br/>
+  Status : <%= project.status %><br/>
   Posted by : <%= project.user.username %>, <%= project.user.email.humanize %><br/>
-</article>
+</div>
+
+<% if params[:action] === 'index' %>
+  <%= link_to "Show project", project_path(project) %>
+<% end %>

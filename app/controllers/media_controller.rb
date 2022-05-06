@@ -21,10 +21,8 @@ class MediaController < ApplicationController
     respond_to do |format|
       if @medium.save
         medium = Medium.new
-        format.turbo_stream
-        format.html { redirect_to project_path(@project) }
+        format.html { redirect_to project_path(@project), notice: "Medium successfully created." }
       else
-        format.turbo_stream
         format.html { render :new, status: :unprocessable_entity }
       end
     end
@@ -34,8 +32,7 @@ class MediaController < ApplicationController
   def update
     respond_to do |format|
       if @medium.update(medium_params)
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@medium) }
-        format.html { redirect_to project_medium_path(@medium.project, @medium) }
+        format.html { redirect_to project_medium_path(@medium.project, @medium), notice: "Medium successfully updated."  }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -46,19 +43,10 @@ class MediaController < ApplicationController
   def destroy
     respond_to do |format|
       if @medium.destroy
-        format.turbo_stream
-        format.html { redirect_to project_path(@medium.project) }
+        format.html { redirect_to project_path(@medium.project), notice: "Medium successfully destroyed."  }
       else
         format.html { render :destroy, status: :unprocessable_entity }        
       end
-    end
-  end
-
-  # DELETE /media/1/cancel
-  def cancel
-    respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to project_path(@medium.project) }
     end
   end
 

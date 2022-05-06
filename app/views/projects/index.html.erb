@@ -1,26 +1,11 @@
-<h1>Projects</h1>
+<h1>Project#Index</h1>
 
-<!-- Query form -->
+<%= render partial: "projects/partials/projects", locals: { projects: @projects } %>
 
-<%= form_tag projects_path, method: :get, data: { turbo_frame: "projects-filter-results", turbo_action: "advance", controller: "filter", action: "input->filter#submit" } do |f| %>
-  <%= text_field_tag "title", nil, placeholder: "Search ..." %>
-  <%= select_tag "category", options_from_collection_for_select(Project.categories.keys, :to_s, :titlecase), include_blank: true, default: 0 %>
-  <%= submit_tag "Search" %>
-<% end %>
-
-<br/>
-
-<!-- Projects list -->
-
-<%= turbo_frame_tag "projects-filter-results" do %>
-  <%= render partial: "projects", locals: { projects: @projects } %>
-<% end %>
-
-<br/>
-
-<% if current_user&.staff? %>
+<div>
   <%= link_to "New project", new_project_path %>
-  <br/>
-<% end %>
+</div>
 
-<%= link_to "Index", root_path %>
+<div>
+  <%= link_to "Home", root_path %>
+</div>

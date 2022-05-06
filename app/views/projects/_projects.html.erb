@@ -1,6 +1,0 @@
-  <div id="projects-list" data-controller="projects">
-    <% projects.each do |project| %>
-      <%= render partial: "project", locals: { project: project }  %>
-      <%= link_to "Show project", project_path(project), data: { turbo: false } %>
-    <% end %>
-  </div>

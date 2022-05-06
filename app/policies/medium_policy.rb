@@ -42,9 +42,4 @@ class MediumPolicy < ApplicationPolicy
   def destroy?
     user&.staff?
   end
-
-  # Staff member can destroy
-  def cancel?
-    user&.staff?
-  end  
 end

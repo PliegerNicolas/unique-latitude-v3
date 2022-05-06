@@ -43,6 +43,7 @@ class ProjectPolicy < ApplicationPolicy
     user&.staff?
   end
 
+  # Staff member can change status
   def change_status?
     user&.staff?    
   end

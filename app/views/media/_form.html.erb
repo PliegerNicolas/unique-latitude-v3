@@ -1,5 +1,0 @@
-<% model = [local_assigns[:project], medium].compact %>
-<%= form_with model: model, id: dom_id_for_records(*model) do |form| %>
-  <%= render "shared/errors", object: medium %>
-  <%= render "media/form-fields", form: form, medium: medium %>
-<% end %>

@@ -6,10 +6,7 @@ class UsersController < ApplicationController
 
   def index
     @users = policy_scope(User).order(role: :desc, created_at: :asc)
-
-    # Query
-    @users = @users.filter_by_username(params[:username]) if params[:username].present?
-
+    # @users = @users.filter_by_username(params[:username]) if params[:username].present?
     authorize User
   end
 
@@ -18,10 +15,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.turbo_stream
         format.html { redirect_to users_url }
       else
-        format.turbo_stream
         format.html { render :index, status: :unprocessable_entity }
       end
     end
@@ -32,10 +27,8 @@ class UsersController < ApplicationController
     
     respond_to do |format|
       if @user.save
-        format.turbo_stream
         format.html { redirect_to users_url }
       else
-        format.turbo_stream
         format.html { render :index, status: :unprocessable_entity }
       end
     end

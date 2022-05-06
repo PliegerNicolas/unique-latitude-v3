@@ -23,10 +23,12 @@ class UserPolicy < ApplicationPolicy
     user&.staff?
   end
 
+  # Staff member if permitted can promote user
   def promote?
     user&.promotion_permitted?(record)
   end
 
+  # Staff member if permitted can demote user
   def demote?
     user&.demotion_permitted?(record)
   end

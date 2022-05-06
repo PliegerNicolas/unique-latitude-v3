@@ -4,17 +4,25 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # Relationships
+
   has_many :projects, dependent: :nullify
+
+  # Enums
 
   enum role: [:user, :moderator, :admin]
   
+  # Scopes
+
   scope :filter_by_username, ->(username) { where("username ILIKE ?", "%#{username}%") }
+
+  # Actions
 
   after_initialize :set_default_role, :if => :new_record?
 
-  def set_default_role
-    self.role ||= :user
-  end
+  # Turbo_stream
+
+  # Custom entity Methods
 
   def staff?
     self.role == "admin" || self.role == "moderator"
@@ -40,7 +48,9 @@ class User < ApplicationRecord
     end
   end
 
-  after_update_commit do
-    broadcast_update
+  private
+
+  def set_default_role
+    self.role ||= :user
   end
 end

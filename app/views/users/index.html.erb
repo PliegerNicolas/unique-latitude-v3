@@ -1,17 +1,10 @@
 <h1>Users panel</h1>
 
-<!-- Query form -->
-
-<%= form_tag users_path, method: :get, data: { turbo_frame: "users-filter-results", turbo_action: "advance", controller: "filter", action: "input->filter#submit" } do |f| %>
-<%= text_field_tag "username", nil, placeholder: "Search by username ..." %>
-<%= submit_tag "Search" %>
-<% end %>
-
 <br/>
 
-<%= turbo_frame_tag "users-filter-results" do %>
-  <%= render partial: "users", locals: { users: @users } %>
-<% end %>
+<div id="users">
+  <%= render partial: "users/partials/users", locals: { users: @users } %>
+</div>
 
 <br/>
 
