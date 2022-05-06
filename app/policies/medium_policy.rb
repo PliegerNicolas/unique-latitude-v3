@@ -6,11 +6,7 @@ class MediumPolicy < ApplicationPolicy
     end
 
     def resolve
-      if user&.staff?
-        scope.all
-      else
-        scope.none       
-      end
+      scope.all
     end
 
     private
