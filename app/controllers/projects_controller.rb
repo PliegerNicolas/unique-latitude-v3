@@ -73,7 +73,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to projects_url, notice: "Project's status was successfully changed." }
+        format.html { redirect_to project_url(@project), notice: "Project's status was successfully changed." }
       else
         format.html { render :project, status: :unprocessable_entity }
       end

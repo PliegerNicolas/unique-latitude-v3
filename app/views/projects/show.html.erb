@@ -11,6 +11,7 @@
 
 <div>
   <%= link_to "Edit project", edit_project_path(@project) %>
+  <%= link_to "#{@project.published? ? "Unpublish" : "Publish"}", project_change_status_path(@project) %>
 </div>
 
 <div>
