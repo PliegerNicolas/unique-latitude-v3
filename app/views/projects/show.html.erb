@@ -5,7 +5,8 @@
 
 <h2>Media form</h2>
 
-<%= render partial: "media/partials/form", locals: { medium: Medium.new, project: @project } %>
+<%#= render partial: "media/partials/form", locals: { medium: Medium.new, project: @project } %>
+<%= link_to "New medium", new_project_medium_path(@project) %>
 
 <h2>Project's media</h2>
 

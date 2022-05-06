@@ -3,7 +3,7 @@ class MediaController < ApplicationController
   # include RecordHelper
 
   before_action :set_medium, only: %i[ show edit update destroy cancel ]
-  before_action :set_project, only: %i[ edit create update destroy ]
+  before_action :set_project, only: %i[ new edit create update destroy ]
   
   # GET /media/1
   def show
@@ -11,6 +11,15 @@ class MediaController < ApplicationController
 
   # GET /media/1/edit
   def edit
+  end
+
+  # GET /media/new
+  def new
+    @medium = Medium.new
+    # Set active user as project owner
+    @medium.project = @project
+
+    authorize @medium
   end
 
   # POST projects/:id/media
