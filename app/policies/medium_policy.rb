@@ -33,9 +33,18 @@ class MediumPolicy < ApplicationPolicy
     user&.staff?
   end
 
+  # Staff member can new/create
+  def new?
+    create?
+  end
+
   # Staff member can edit/update
   def update?
     user&.staff?
+  end
+
+  def edit?
+    update?
   end
 
   # Staff member can destroy

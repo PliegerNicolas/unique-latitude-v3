@@ -14,4 +14,9 @@
     <% end %>
   <% end %>
 
+  <div>
+    <%= link_to "Edit", edit_project_medium_path(medium.project, medium) %>
+    <%= button_to  "Delete", project_medium_path(medium.project, medium), method: :delete %>
+  </div>
+
 </div>

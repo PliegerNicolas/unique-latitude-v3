@@ -38,6 +38,10 @@ class ProjectPolicy < ApplicationPolicy
     user&.staff?
   end
 
+  def edit?
+    update?
+  end
+
   # Staff member can destroy
   def destroy?
     user&.staff?
