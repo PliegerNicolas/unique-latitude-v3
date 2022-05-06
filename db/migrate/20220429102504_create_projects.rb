@@ -8,7 +8,7 @@ class CreateProjects < ActiveRecord::Migration[7.0]
       t.text :description
       t.string :location
       t.date :date
-      t.integer :published, null: false, default: 0 # 0 = false, 1 = true
+      t.integer :status, null: false, default: 0 # 0 = false, 1 = true
       t.belongs_to :user, null: false, foreign_key: true
 
       t.timestamps

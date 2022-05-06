@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'users', to: 'users#index', as: :users
   get 'users/:id/promote', to: 'users#promote', as: :promote
   get 'users/:id/demote', to: 'users#demote', as: :demote
-
+  get 'projects/:id/change-status', to: 'projects#change_status', as: :project_change_status
 
   resources :projects do
     resources :media

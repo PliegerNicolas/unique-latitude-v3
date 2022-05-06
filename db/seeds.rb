@@ -46,28 +46,28 @@ projects = Project.create([ # 4 Projects
     subject: "A subject",
     category: 0,
     user: User.last,
-    published: "published"
+    status: 1
   },
   {
     title: "Project-Title-2",
     subject: "A subject 2",
     category: 1,
     user: User.last,
-    published: "published"
+    status: 1
   },
   {
     title: "Project-Title-3",
     subject: "A subject 3",
     category: 2,
     user: User.last,
-    published: "unpublished"
+    status: 0
   },
   {
     title: "Project-Title-4",
     subject: "A subject 3",
     category: 2,
     user: User.first,
-    published: "published"
+    status: 1
   }
 ])
 

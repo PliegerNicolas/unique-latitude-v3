@@ -9,7 +9,7 @@ class ProjectPolicy < ApplicationPolicy
       if user&.staff?
         scope.all
       else
-        scope.where(published: true)        
+        scope.where(status: "published")        
       end
     end
 
@@ -41,5 +41,9 @@ class ProjectPolicy < ApplicationPolicy
   # Staff member can destroy
   def destroy?
     user&.staff?
+  end
+
+  def change_status?
+    user&.staff?    
   end
 end

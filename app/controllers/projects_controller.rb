@@ -2,8 +2,8 @@ class ProjectsController < ApplicationController
   include RecordHelper
   include ActionView::RecordIdentifier
   
-  before_action :authenticate_user!, only: %i[ new edit create update destroy ]
-  before_action :set_project, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: %i[ new edit create update destroy change_status ]
+  before_action :set_project, only: %i[ show edit update destroy change_status ]
 
   # GET /projects
   def index
@@ -70,6 +70,18 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def change_status
+    @project.change_status!
+
+    respond_to do |format|
+      if @project.save
+        format.html { redirect_to projects_url, notice: "Project's status was successfully changed." }
+      else
+        format.html { render :project, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
@@ -79,6 +91,6 @@ class ProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def project_params
-      params.require(:project).permit(:title, :slug, :subject, :category, :description, :location, :date, :user_id)
+      params.require(:project).permit(:title, :slug, :subject, :category, :description, :location, :date, :status, :user_id)
     end
 end
