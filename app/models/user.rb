@@ -35,13 +35,12 @@ class User < ApplicationRecord
   end
 
   def demotion_permitted?(user)
-    unless self == user
+    unless self == user || user.role_before_type_cast == 0
       self.role_before_type_cast >= user.role_before_type_cast
     end
   end
 
-  after_update_commit {
+  after_update_commit do
     broadcast_update
-    
-  }
+  end
 end
