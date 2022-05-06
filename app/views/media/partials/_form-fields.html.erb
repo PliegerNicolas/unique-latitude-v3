@@ -29,5 +29,10 @@
 </div>
 
 <div>
+  <%= form.label :priority_index %>
+  <%= form.select :priority_index, options_for_select(1..3) %>
+</div>
+
+<div>
   <%= form.submit %>
 </div>
