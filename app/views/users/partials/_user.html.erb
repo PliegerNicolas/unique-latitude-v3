@@ -1,12 +1,14 @@
-<div id="<%= dom_id(user) %>">
-  <div>
-    <%= user.username %>
-    <%= user.email %>
-    <%= user.role %>
-  </div>
+<%= turbo_frame_tag dom_id(user) do %>
+  <div id="<%= dom_id(user) %>">
+    <div>
+      <%= user.username %>
+      <%= user.email %>
+      <%= user.role %>
+    </div>
 
-  <div>
-    <%= link_to "Promote", promote_path(user) %>
-    <%= link_to "Demote", demote_path(user) %>
+    <div>
+      <%= link_to "Promote", promote_path(user) %>
+      <%= link_to "Demote", demote_path(user) %>
+    </div>
   </div>
-</div>
+<% end %>
