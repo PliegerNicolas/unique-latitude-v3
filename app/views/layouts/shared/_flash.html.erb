@@ -1,9 +1,8 @@
-<%# Notice %>
-<% if flash[:notice].present? %>
-  <div><%= flash[:notice] %></div>
-<% end %>
-
-<%# Alert %>
-<% if flash[:alert].present? %>
-  <div><%= flash[:alert] %></div>
+<% flash.each do |type, message| %>
+  <% if type == "notice" %>
+    <div><%= message %></div> 
+  <% end %>
+  <% if type == "alert" %>
+    <div><%= message %></div>
+  <% end %>
 <% end %>
