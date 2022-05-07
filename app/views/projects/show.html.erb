@@ -2,12 +2,10 @@
 
 <h2>Project info</h2>
 
-<%= turbo_frame_tag "project" do %>
-  <%= render partial: "projects/partials/project", locals: { project: @project } %>
-  <div>
-    <%= link_to "#{@project.published? ? "Unpublish" : "Publish"}", project_change_status_path(@project) %>
-  </div>
-<% end %>
+<%= render partial: "projects/partials/project", locals: { project: @project } %>
+<div>
+  <%= link_to "#{@project.published? ? "Unpublish" : "Publish"}", project_change_status_path(@project) %>
+</div>
 
 <h2>Media form</h2>
 
