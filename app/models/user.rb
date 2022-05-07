@@ -22,6 +22,10 @@ class User < ApplicationRecord
 
   # Turbo_stream
 
+  after_update_commit do
+    broadcast_update partial: "users/partials/user"
+  end
+
   # Custom entity Methods
 
   def staff?
