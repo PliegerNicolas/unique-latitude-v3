@@ -1,3 +1,6 @@
 <h1>Show Medium</h1>
 
-<%= render partial: "media/partials/medium", locals: { medium: @medium } %>
+
+<%= turbo_frame_tag @medium do %>
+  <%= render partial: "media/medium", locals: { medium: @medium } %>
+<% end %>

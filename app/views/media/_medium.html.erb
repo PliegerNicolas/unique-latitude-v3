@@ -1,0 +1,28 @@
+
+<%= turbo_stream_from medium %>
+<%= turbo_frame_tag medium do %>
+
+  <div id="<%= dom_id(medium)%>">
+    Title : <%= medium.title %>
+    Description : <%= medium.description %>
+    Author : <%= medium.author %>
+    Location : <%= medium.location %>
+    Date : <%= medium.date %>
+    priority_index : <%= medium.priority_index %>
+    
+    <% if medium.visual.attached? %>
+      <% if medium.visual.content_type.include?("image") %>
+        <%= image_tag url_for(medium.visual) %>
+      <% else %>
+        <%= video_tag url_for(medium.visual), controls: true %>
+      <% end %>
+    <% end %>
+
+    <div>
+      <%= link_to "Edit", edit_project_medium_path(medium.project, medium) %>
+      <%= button_to  "Delete", project_medium_path(medium.project, medium), method: :delete %>
+    </div>
+
+  </div>
+
+<% end %>
