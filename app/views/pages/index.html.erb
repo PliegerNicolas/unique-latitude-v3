@@ -36,5 +36,5 @@
 <% end %>
 
 <div>
-  <%= link_to "Users admin panel", users_path %>
+  <%= link_to "Users admin panel", users_path if current_user&.staff? %>
 </div>

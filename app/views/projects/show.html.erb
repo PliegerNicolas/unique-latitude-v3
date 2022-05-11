@@ -2,10 +2,10 @@
 
 <h2>Project info</h2>
 
-<%= render partial: "projects/partials/project", locals: { project: @project } %>
-<div>
-  <%= link_to "#{@project.published? ? "Unpublish" : "Publish"}", project_change_status_path(@project) %>
-</div>
+<%= turbo_stream_from @project %>
+<%= turbo_frame_tag dom_id(@project) do %>
+  <%= render partial: "projects/partials/project", locals: { project: @project } %>
+<% end %>
 
 <h2>Media form</h2>
 
@@ -21,6 +21,7 @@
 
 <div>
   <%= link_to "Edit project", edit_project_path(@project) %>
+  <%= button_to "Delete project", project_path(@project), method: :delete %>
 </div>
 
 <div>

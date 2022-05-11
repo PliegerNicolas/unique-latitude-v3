@@ -29,6 +29,10 @@ class Project < ApplicationRecord
 
   # Turbo_stream
 
+  after_update_commit do
+    broadcast_update_to self, partial: "projects/partials/project", locals: { project: self }
+  end
+
   # Custom entity Methods
 
   def change_status!

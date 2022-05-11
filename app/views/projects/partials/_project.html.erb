@@ -1,14 +1,16 @@
-<div id="<%= dom_id(project)%>">
-  Title : <%= project.title.humanize %><br/>
-  Subject : <%= project.subject %><br/>
-  Category : <%= project.category.humanize %><br/>
-  Description : <%= project.description %><br/>
-  Location : <%= project.location %><br/>
-  Date : <%= project.date %><br/>
-  Status : <%= project.status %><br/>
-  Posted by : <%= project.user.username %>, <%= project.user.email.humanize %><br/>
-</div>
+<%= turbo_stream_from project %>
+<%= turbo_frame_tag dom_id(project) do %>
+  <div id="<%= dom_id(project)%>">
+    Title : <%= project.title.humanize %><br/>
+    Subject : <%= project.subject %><br/>
+    Category : <%= project.category.humanize %><br/>
+    Description : <%= project.description %><br/>
+    Location : <%= project.location %><br/>
+    Date : <%= project.date %><br/>
+    Status : <%= project.status %><br/>
+    Posted by : <%= project.user.username %>, <%= project.user.email.humanize %><br/>
+  </div>
 
-<% if params[:action] === 'index' %>
-  <%= link_to "Show project", project_path(project) %>
+  <%= link_to "Show project", project_path(project), data: { turbo: false } %>
+  <%= link_to "#{project.published? ? "Unpublish" : "Publish"}", project_change_status_path(project) %>
 <% end %>
