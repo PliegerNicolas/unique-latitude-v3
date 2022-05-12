@@ -8,8 +8,8 @@ class ProjectsController < ApplicationController
   # GET /projects
   def index
     @projects = policy_scope(Project).order(date: :desc)
-    # @projects = @projects.filter_by_title(params[:title]) if params[:title].present?  
-    # @projects = @projects.filter_by_category(params[:category]) if params[:category].present?  
+    @projects = @projects.filter_by_title(params[:title]) if params[:title].present?  
+    @projects = @projects.filter_by_category(params[:category]) if params[:category].present?  
   end
 
   # GET /projects/1

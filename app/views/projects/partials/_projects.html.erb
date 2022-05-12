@@ -1,3 +1,5 @@
-<% projects.each do |project| %>
-  <%= render partial: "projects/partials/project", locals: { project: project } %>
-<% end %>
+<div id="projects-list" data-controller="projects">
+  <% projects.each do |project| %>
+    <%= render partial: "projects/partials/project", locals: { project: project } %>
+  <% end %>
+</div>

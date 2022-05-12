@@ -31,6 +31,7 @@ class Project < ApplicationRecord
 
   after_update_commit do
     broadcast_update_to self, partial: "projects/partials/project", locals: { project: self }
+    broadcast_remove_to self if self.status === "unpublished"
   end
 
   # Custom entity Methods
