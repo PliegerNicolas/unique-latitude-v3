@@ -1,5 +1,5 @@
 <h1>Edit medium</h1>
 
 <%= turbo_frame_tag @medium do %>
-  <%= render partial: "media/form", locals: { medium: @medium, project: @medium.project } %>
+  <%= render partial: "media/partials/form", locals: { medium: @medium, project: @medium.project } %>
 <% end %>

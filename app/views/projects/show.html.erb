@@ -7,13 +7,13 @@
 <h2>Media form</h2>
 
 <!-- Media form -->
-<%= render partial: "media/form", locals: { medium: Medium.new, project: @project } %>
+<%= render partial: "media/partials/form", locals: { medium: Medium.new, project: @project } %>
 
 <h2>Project's media</h2>
 
 <%= turbo_stream_from @project, :media %>
 <%= tag.div id: "#{dom_id(@project)}_media" do %>
-  <%= render @project.media %>
+  <%= render partial: "media/partials/medium", collection: @project.media %>
 <% end %>
 
 <div>

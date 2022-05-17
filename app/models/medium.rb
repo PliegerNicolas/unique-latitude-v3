@@ -20,14 +20,14 @@ class Medium < ApplicationRecord
 
   # Turbo_stream
 
-  after_create_commit do
-    broadcast_append_to [project, :media], target: "#{dom_id(project)}_media"
-    broadcast_update_to self
-  end
+  #after_create_commit do
+  #  broadcast_append_to [project, :media], target: "#{dom_id(project)}_media"
+  #  broadcast_update_to self
+  #end
 
-  after_update_commit do
-    broadcast_update_to self
-  end
+  #after_update_commit do
+  #  broadcast_update_to self
+  #end
 
   after_destroy_commit do
     broadcast_remove_to self
