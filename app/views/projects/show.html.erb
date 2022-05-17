@@ -4,10 +4,21 @@
 
 <%= render partial: "projects/partials/project", locals: { project: @project } %>
 
-<h2>Media form</h2>
+<% if current_user&.staff? %>
+  <div>
+    <%= link_to "#{@project.published? ? "Unpublish" : "Publish"}", project_change_status_path(@project) %>
+    <%= link_to "Edit project", edit_project_path(@project) %>
+    <%= button_to "Delete project", project_path(@project), method: :delete %>
+  </div>
+<% end %>
 
 <!-- Media form -->
-<%= render partial: "media/partials/create-form", locals: { medium: Medium.new, project: @project } %>
+<% if current_user&.staff? %>
+
+  <h2>Media form</h2>
+
+  <%= render partial: "media/partials/create-form", locals: { medium: Medium.new, project: @project } %>
+<% end %>
 
 <h2>Project's media</h2>
 
@@ -15,13 +26,3 @@
 <%= tag.div id: "#{dom_id(@project)}_media" do %>
   <%= render partial: "media/partials/medium", collection: @project.media %>
 <% end %>
-
-<div>
-  <%= link_to "#{@project.published? ? "Unpublish" : "Publish"}", project_change_status_path(@project) %>
-  <%= link_to "Edit project", edit_project_path(@project) %>
-  <%= button_to "Delete project", project_path(@project), method: :delete %>
-</div>
-
-<div>
-  <%= link_to "Projects", projects_path %>
-</div>
