@@ -6,6 +6,7 @@ class CreateMedia < ActiveRecord::Migration[7.0]
       t.string :author
       t.string :location
       t.date :date
+      t.string :visual_url
       t.integer :priority_index, default: 1, null: false
       t.belongs_to :project, null: false, foreign_key: true
 

@@ -59,6 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_04_104148) do
     t.string "author"
     t.string "location"
     t.date "date"
+    t.string "visual_url"
     t.integer "priority_index", default: 1, null: false
     t.bigint "project_id", null: false
     t.datetime "created_at", null: false

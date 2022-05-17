@@ -1,0 +1,6 @@
+<% model = [local_assigns[:project], medium].compact %>
+
+<%= form_with model: model do |form| %>
+  <%= render "layouts/shared/form_error", object: medium %>
+  <%= render "media/partials/form-fields", form: form %>
+<% end %>
