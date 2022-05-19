@@ -11,6 +11,8 @@
     
     <% if medium.visual.attached? %>
       <%= image_tag url_for(medium.visual) %>
+    <% elsif medium.visual_url? %>
+      <%= get_video_iframe(medium.visual_url) %>
     <% end %>
 
     <% if current_user&.staff? %>
