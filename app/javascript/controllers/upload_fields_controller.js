@@ -4,44 +4,26 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [ "textField", "fileField", "preview", "fileCancelButton"]
 
+  // -- Actions --
+
   connect() {
     console.log("Connect.");
-    this.disableFields();
+    this.displayImagePreview();
     this.doFileCancelButton();
+    this.disableFields();
   }
 
   fileFieldManager() {
-    this.disableFields();
+    this.displayImagePreview();
     this.doFileCancelButton();
+    this.disableFields();
   }
 
   textFieldManager() {
     this.disableFields();
   }
 
-
-  // Getters
-
-  get text() {
-    // get value in text_field
-    return this.textFieldTarget
-  }
-
-  get file() {
-    // get value in file_field
-    return this.fileFieldTarget
-  }
-
-  get preview() {
-    // get preview image
-    return this.previewTarget
-  }
-
-  get fileCancelButton() {
-    return this.fileCancelButtonTarget
-  }
-
-  // Functions
+  // -- Functions --
 
   // disable file field if text field used or inverse
   disableFields() {
@@ -71,6 +53,8 @@ export default class extends Controller {
       this.fileCancelButton.style.display = 'block';
       this.fileCancelButton.addEventListener('click', () => {
         this.file.value = '';
+        this.disableImagePreview();
+        this.disableFields();
         this.fileCancelButton.style.display = 'none';
       });
     } else {
@@ -78,36 +62,46 @@ export default class extends Controller {
     }
   }
 
-  // displayPreview() {
-  //   let input = this.fileFieldTarget;
-  //   let files = input.files;
-  //   let img = this.previewTarget;
+  // Disable a preview of selected local image
+  displayImagePreview() {
+    let file = this.fileFieldTarget;
+    let img = this.previewTarget;
 
-  //   if (input.value !== '' ) {
-  //     let reader = new FileReader();
+    if (file.value !== '') {
+      let reader = new FileReader();
+      reader.onload = function() {
+        img.src = reader.result;
+      }
+      reader.readAsDataURL(file.files[0]);
+      img.style.display = "block";  
+    }
+  }
 
-  //     reader.onload = function() {
-  //       img.src = reader.result;
-  //     }
-    
-  //     reader.readAsDataURL(files[0]);
-  //     img.style.display = "block";
-  //   } else {
-  //     img.style.display = "hidden";
-  //   }
-  // }
+  // Hides and cleans the local image preview
+  disableImagePreview() {
+    let img = this.previewTarget;
+    img.src = '';
+    img.style.display = "none";  
+  }
 
-  // disableFields() {
-  //   let text_field = this.textFieldTarget
-  //   let file_field = this.fileFieldTarget
-  //   if (text_field.value) {
-  //     console.log("Occupied text field");
-  //     file_field.value = '';
-  //     this.previewTarget.style.display = "hidden";
-  //   }
-  //   if (file_field.value) {
-  //     console.log("Occupied file field");
-  //     text_field.value = '';
-  //   }
-  // }
+  // -- Getters --
+
+  get text() {
+    // get value in text_field
+    return this.textFieldTarget
+  }
+
+  get file() {
+    // get value in file_field
+    return this.fileFieldTarget
+  }
+
+  get preview() {
+    // get preview image
+    return this.previewTarget
+  }
+
+  get fileCancelButton() {
+    return this.fileCancelButtonTarget
+  }
 }
