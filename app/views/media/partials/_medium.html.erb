@@ -10,11 +10,7 @@
     priority_index : <%= medium.priority_index %>
     
     <% if medium.visual.attached? %>
-      <% if medium.visual.content_type.include?("image") %>
-        <%= image_tag url_for(medium.visual) %>
-      <% else %>
-        <%= video_tag url_for(medium.visual), controls: true %>
-      <% end %>
+      <%= image_tag url_for(medium.visual) %>
     <% end %>
 
     <% if current_user&.staff? %>
