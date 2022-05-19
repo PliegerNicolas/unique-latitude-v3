@@ -35,11 +35,11 @@
     <%= submit_tag "Remove", type: "button", style: "display:none", data: { "upload-fields-target": "fileCancelButton" } %>
   </div>
 
-  <%# if medium.visual.attached? %>
-    <%#= image_tag url_for(medium.visual), data: { "upload-fields-target": "preview" }, style: "display:none" %>
-  <%# else %>
+  <% if form.object.visual.attached? %>
+    <%= image_tag url_for(form.object.visual), data: { "upload-fields-target": "preview" }, style: "display:block" %>
+  <% else %>
     <%= image_tag '', data: { "upload-fields-target": "preview" }, style: "display:none" %>
-  <%# end %>
+  <% end %>
 </div>
 
 <div>

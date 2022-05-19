@@ -101,6 +101,10 @@ export default class extends Controller {
     return this.previewTarget
   }
 
+  get setPreEditImage() {
+    default_image = this.previewTarget;
+  }
+
   get fileCancelButton() {
     return this.fileCancelButtonTarget
   }
