@@ -1,6 +1,8 @@
 <% model = [local_assigns[:project], medium].compact %>
 
-<%= form_with model: model do |form| %>
-  <%= render "layouts/shared/form_error", object: medium %>
-  <%= render "media/partials/form-fields", form: form %>
+<%= turbo_frame_tag medium do %>
+  <%= form_with model: model do |form| %>
+    <%= render "layouts/shared/form_error", object: medium %>
+    <%= render "media/partials/form-fields", form: form, data: { turbo: false } %>
+  <% end %>
 <% end %>

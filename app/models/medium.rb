@@ -22,7 +22,6 @@ class Medium < ApplicationRecord
 
   def check_visual
     # Prioritize active storage
-    debugger
     if self.visual.attached?
       self.visual_url = nil
     end
