@@ -23,20 +23,6 @@
   <%= form.date_field :date %>
 </div>
 
-
-<!--
-  <div data-controller="image-preview">
-    <%#= image_tag("preview.png",  :width => "100px", :hight => "100px", data: { target: "image-preview.output" }) %>
-  </div>
-
-  <div class="my-2">
-      <%#= form.label "Look Image" %><br>
-      <%#= form.file_field :image, :class => "form-control-file photo_upload", data: {target: "image-preview.input", action: "image-preview#readURL" } %>
-  </div>
--->
-
-
-
 <div data-controller="upload-fields">
   <div>
     <%= form.label :visual_url %>
@@ -46,6 +32,7 @@
   <div>
     <%= form.label :visual %>
     <%= form.file_field :visual, accept: "image/png, image/jpeg, image/jpg", data: { action: "upload-fields#fileFieldManager", "upload-fields-target": "fileField" } %>
+    <%= submit_tag "Remove", type: "button", style: "display:none", data: { "upload-fields-target": "fileCancelButton" } %>
   </div>
 
   <%= image_tag '', alt: 'preview', data: { "upload-fields-target": "preview" }, style: "display:none" %>
