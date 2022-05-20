@@ -7,7 +7,6 @@ export default class extends Controller {
   // -- Actions --
 
   connect() {
-    console.log("Connect.");
     this.displayImagePreview();
     this.doFileCancelButton();
     this.disableFields();

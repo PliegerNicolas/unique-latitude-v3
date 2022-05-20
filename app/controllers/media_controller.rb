@@ -1,5 +1,5 @@
 class MediaController < ApplicationController
-  # include ActionView::RecordIdentifier
+  include ActionView::RecordIdentifier
   # include RecordHelper
 
   before_action :set_medium, only: %i[ show edit update destroy cancel ]
@@ -30,6 +30,12 @@ class MediaController < ApplicationController
     respond_to do |format|
       if @medium.save
         medium = Medium.new
+        format.turbo_stream do
+          render turbo_stream:
+          [
+            turbo_stream.append("#{dom_id(@project)}_media", partial: "media/partials/medium", locals: { medium: @medium })
+          ]
+        end
         format.html { redirect_to project_path(@project), notice: "Medium successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -52,6 +58,7 @@ class MediaController < ApplicationController
   def destroy
     respond_to do |format|
       if @medium.destroy
+        format.turbo_stream { turbo_stream.remove @project } 
         format.html { redirect_to project_path(@medium.project), notice: "Medium successfully destroyed."  }
       else
         format.html { render :destroy, status: :unprocessable_entity }        
