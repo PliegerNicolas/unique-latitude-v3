@@ -26,12 +26,12 @@
 <div>
   <div>
     <%= form.label :visual_url %>
-    <%= form.text_field :visual_url, data: { action: "new-medium-form-manager#textFieldManager", "new-medium-form-manager-target": "textField" } %>
+    <%= form.text_field :visual_url, data: { action: "new-medium-form-manager#onTextFieldUpdate", "new-medium-form-manager-target": "textField" } %>
   </div>
 
   <div>
     <%= form.label :visual %>
-    <%= form.file_field :visual, accept: "image/png, image/jpeg, image/jpg", data: { action: "new-medium-form-manager#fileFieldManager", "new-medium-form-manager-target": "fileField" } %>
+    <%= form.file_field :visual, accept: "image/png, image/jpeg, image/jpg", data: { action: "new-medium-form-manager#onFileFieldUpdate", "new-medium-form-manager-target": "fileField" } %>
     <%= submit_tag "Remove", type: "button", style: "display:none", data: { "new-medium-form-manager-target": "fileCancelButton" } %>
   </div>
 
