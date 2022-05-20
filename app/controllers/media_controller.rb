@@ -1,6 +1,6 @@
 class MediaController < ApplicationController
   include ActionView::RecordIdentifier
-  # include RecordHelper
+  include RecordHelper
 
   before_action :set_medium, only: %i[ show edit update destroy cancel ]
   before_action :set_project, only: %i[ new edit create update destroy ]
@@ -33,7 +33,8 @@ class MediaController < ApplicationController
         format.turbo_stream do
           render turbo_stream:
           [
-            turbo_stream.append("#{dom_id(@project)}_media", partial: "media/partials/medium", locals: { medium: @medium })
+            turbo_stream.append("#{dom_id(@project)}_media", partial: "media/partials/medium", locals: { medium: @medium }),
+            turbo_stream.update("#{dom_id(@project)}_media", partial: "media/partials/medium", collection: @project.media)
           ]
         end
         format.html { redirect_to project_path(@project), notice: "Medium successfully created." }
@@ -58,7 +59,7 @@ class MediaController < ApplicationController
   def destroy
     respond_to do |format|
       if @medium.destroy
-        format.turbo_stream { turbo_stream.remove @project } 
+        format.turbo_stream { render turbo_stream: turbo_stream.update("#{dom_id(@medium.project)}_media", partial: "media/partials/medium", collection: @project.media) } 
         format.html { redirect_to project_path(@medium.project), notice: "Medium successfully destroyed."  }
       else
         format.html { render :destroy, status: :unprocessable_entity }        

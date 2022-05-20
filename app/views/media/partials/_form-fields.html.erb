@@ -23,22 +23,22 @@
   <%= form.date_field :date %>
 </div>
 
-<div data-controller="upload-fields">
+<div>
   <div>
     <%= form.label :visual_url %>
-    <%= form.text_field :visual_url, data: { action: "upload-fields#textFieldManager", "upload-fields-target": "textField" } %>
+    <%= form.text_field :visual_url, data: { action: "new-medium-form-manager#textFieldManager", "new-medium-form-manager-target": "textField" } %>
   </div>
 
   <div>
     <%= form.label :visual %>
-    <%= form.file_field :visual, accept: "image/png, image/jpeg, image/jpg", data: { action: "upload-fields#fileFieldManager", "upload-fields-target": "fileField" } %>
-    <%= submit_tag "Remove", type: "button", style: "display:none", data: { "upload-fields-target": "fileCancelButton" } %>
+    <%= form.file_field :visual, accept: "image/png, image/jpeg, image/jpg", data: { action: "new-medium-form-manager#fileFieldManager", "new-medium-form-manager-target": "fileField" } %>
+    <%= submit_tag "Remove", type: "button", style: "display:none", data: { "new-medium-form-manager-target": "fileCancelButton" } %>
   </div>
 
   <% if form.object.visual.attached? %>
-    <%= image_tag url_for(form.object.visual), data: { "upload-fields-target": "preview" }, style: "display:block" %>
+    <%= image_tag url_for(form.object.visual), data: { "new-medium-form-manager-target": "preview" }, style: "display:block" %>
   <% else %>
-    <%= image_tag '', data: { "upload-fields-target": "preview" }, style: "display:none" %>
+    <%= image_tag '', data: { "new-medium-form-manager-target": "preview" }, style: "display:none" %>
   <% end %>
 </div>
 

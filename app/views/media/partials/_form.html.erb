@@ -1,7 +1,9 @@
 <% model = [local_assigns[:project], medium].compact %>
 
+<%# debugger %>
+
 <%= turbo_frame_tag medium do %>
-  <%= form_with model: model do |form| %>
+  <%= form_with model: model, data: { controller: "new-medium-form-manager", action: "turbo:submit-end->new-medium-form-manager#reset" } do |form| %>
     <%= render "layouts/shared/form_error", object: medium %>
     <%= render "media/partials/form-fields", form: form %>
   <% end %>

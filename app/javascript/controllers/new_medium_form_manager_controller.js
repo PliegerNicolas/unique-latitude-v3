@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="upload-fields"
+// Connects to data-controller="new-medium-form-manager"
 export default class extends Controller {
   static targets = [ "textField", "fileField", "preview", "fileCancelButton"]
 
@@ -21,6 +21,11 @@ export default class extends Controller {
   textFieldManager() {
     this.disableFields();
   }
+
+  reset() {
+    this.element.reset();
+    this.disableFields();
+   }
 
   // -- Functions --
 
