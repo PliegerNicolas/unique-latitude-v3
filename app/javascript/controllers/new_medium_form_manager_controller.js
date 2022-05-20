@@ -24,6 +24,8 @@ export default class extends Controller {
 
   reset() {
     this.element.reset();
+    this.displayImagePreview();
+    this.doFileCancelButton();
     this.disableFields();
    }
 
@@ -71,13 +73,15 @@ export default class extends Controller {
     let file = this.fileFieldTarget;
     let img = this.previewTarget;
 
-    if (file.value !== '') {
+    if (file.value !== '' || img.id == 'medium-contained-img') {
       let reader = new FileReader();
       reader.onload = function() {
         img.src = reader.result;
       }
       reader.readAsDataURL(file.files[0]);
       img.style.display = "block";  
+    } else {
+      img.style.display = "none";      
     }
   }
 

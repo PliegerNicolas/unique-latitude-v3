@@ -36,7 +36,7 @@
   </div>
 
   <% if form.object.visual.attached? %>
-    <%= image_tag url_for(form.object.visual), data: { "new-medium-form-manager-target": "preview" }, style: "display:block" %>
+    <%= image_tag url_for(form.object.visual), id: 'medium-contained-img', data: { "new-medium-form-manager-target": "preview" }, style: "display:block" %>
   <% else %>
     <%= image_tag '', data: { "new-medium-form-manager-target": "preview" }, style: "display:none" %>
   <% end %>
