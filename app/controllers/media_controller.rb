@@ -34,7 +34,7 @@ class MediaController < ApplicationController
           render turbo_stream:
           [
             turbo_stream.append("#{dom_id(@project)}_media", partial: "media/partials/medium", locals: { medium: @medium }),
-            turbo_stream.update("#{dom_id(@project)}_media", partial: "media/partials/medium", collection: @project.media)
+            turbo_stream.update("#{dom_id(@project)}_media", partial: "media/partials/medium", collection: policy_scope(@project.media))
           ]
         end
         format.html { redirect_to project_path(@project), notice: "Medium successfully created." }
@@ -59,7 +59,7 @@ class MediaController < ApplicationController
   def destroy
     respond_to do |format|
       if @medium.destroy
-        format.turbo_stream { render turbo_stream: turbo_stream.update("#{dom_id(@medium.project)}_media", partial: "media/partials/medium", collection: @project.media) } 
+        format.turbo_stream { render turbo_stream: turbo_stream.update("#{dom_id(@medium.project)}_media", partial: "media/partials/medium", collection: policy_scope(@project.media)) } 
         format.html { redirect_to project_path(@medium.project), notice: "Medium successfully destroyed."  }
       else
         format.html { render :destroy, status: :unprocessable_entity }        

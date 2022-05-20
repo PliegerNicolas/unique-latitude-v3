@@ -6,7 +6,7 @@ class MediumPolicy < ApplicationPolicy
     end
 
     def resolve
-      scope.all
+      scope.all.order(priority_index: :asc)
     end
 
     private
