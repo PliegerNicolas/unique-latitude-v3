@@ -34,6 +34,10 @@ class Project < ApplicationRecord
     broadcast_remove_to self if self.status === "unpublished"
   end
 
+  after_destroy_commit do
+    broadcast_remove_to self
+  end
+
   # Custom entity Methods
 
   def change_status!

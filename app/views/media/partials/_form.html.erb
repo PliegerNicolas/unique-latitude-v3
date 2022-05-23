@@ -6,5 +6,8 @@
   <%= form_with model: model, data: { controller: "new-medium-form-manager", action: "turbo:submit-end->new-medium-form-manager#reset" } do |form| %>
     <%= render "layouts/shared/form_error", object: medium %>
     <%= render "media/partials/form-fields", form: form %>
+    <% if medium.id %>
+      <%= link_to 'Cancel', project_medium_cancel_path(project, medium) %>
+    <% end %>
   <% end %>
 <% end %>

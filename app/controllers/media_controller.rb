@@ -2,8 +2,8 @@ class MediaController < ApplicationController
   include ActionView::RecordIdentifier
   include RecordHelper
 
-  before_action :set_medium, only: %i[ show edit update destroy cancel ]
-  before_action :set_project, only: %i[ new edit create update destroy ]
+  before_action :set_medium, only: %i[ show edit update destroy ]
+  before_action :set_project, only: %i[ new edit create update destroy cancel ]
   
   # GET /media/1
   def show
@@ -30,13 +30,7 @@ class MediaController < ApplicationController
     respond_to do |format|
       if @medium.save
         medium = Medium.new
-        format.turbo_stream do
-          render turbo_stream:
-          [
-            turbo_stream.append("#{dom_id(@project)}_media", partial: "media/partials/medium", locals: { medium: @medium }),
-            turbo_stream.update("#{dom_id(@project)}_media", partial: "media/partials/medium", collection: policy_scope(@project.media))
-          ]
-        end
+        format.turbo_stream { render turbo_stream: turbo_stream.update("#{dom_id(@project)}_media", partial: "media/partials/medium", collection: policy_scope(@project.media)) }
         format.html { redirect_to project_path(@project), notice: "Medium successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -48,6 +42,7 @@ class MediaController < ApplicationController
   def update
     respond_to do |format|
       if @medium.update(medium_params)
+        format.turbo_stream { render turbo_stream: turbo_stream.update("#{dom_id(@medium.project)}_media", partial: "media/partials/medium", collection: policy_scope(@project.media)) }
         format.html { redirect_to project_path(@medium.project), notice: "Medium successfully updated."  }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -63,6 +58,17 @@ class MediaController < ApplicationController
         format.html { redirect_to project_path(@medium.project), notice: "Medium successfully destroyed."  }
       else
         format.html { render :destroy, status: :unprocessable_entity }        
+      end
+    end
+  end
+
+  def cancel
+    respond_to do |format|
+      if @project
+        format.turbo_stream { render turbo_stream: turbo_stream.update("#{dom_id(@medium.project)}_media", partial: "media/partials/medium", collection: policy_scope(@project.media)) }
+        format.html { redirect_to project_path(@project), notice: "Medium edit cancelled" }
+      else
+        format.html { render :show, status: :unprocessable_entity }
       end
     end
   end

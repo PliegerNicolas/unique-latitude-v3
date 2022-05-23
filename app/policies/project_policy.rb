@@ -51,4 +51,9 @@ class ProjectPolicy < ApplicationPolicy
   def change_status?
     user&.staff?    
   end
+
+  # Staff member can cancel edit
+  def cancel?
+    user&.staff?
+  end
 end

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :media
+    get 'media/:id/cancel', to: 'media#cancel', as: :medium_cancel
   end
 
   get 'users', to: 'users#index', as: :users
